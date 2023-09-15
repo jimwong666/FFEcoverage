@@ -1,0 +1,67 @@
+{
+  "version": "5.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jimwong666/git-revision-webpack-plugin.git"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "webpack": "^5.0.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "name": "@jimwong/git-revision-webpack-plugin",
+  "author": "jim wong",
+  "bugs": {
+    "url": "https://github.com/jimwong666/git-revision-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/jimwong666/git-revision-webpack-plugin",
+  "module": "dist/git-revision-webpack-plugin.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/git-revision-webpack-plugin.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/git-revision-webpack-plugin.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.10.2",
+    "@types/fs-extra": "^9.0.11",
+    "@types/webpack": "5.28.0",
+    "file-loader": "^6.2.0",
+    "fs-extra": "^9.1.0",
+    "size-limit": "^4.10.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.28.0"
+  }
+}
