@@ -1,6 +1,6 @@
 import { realpathSync, relative } from "fs";
 import { dirname, resolve } from "path";
-import { programVisitor } from "istanbul-lib-instrument";
+import { programVisitor } from "@jimwong/istanbul-lib-instrument";
 import babelSyntaxObjectRestSpread from "babel-plugin-syntax-object-rest-spread";
 const { GitRevisionPlugin } = require("@jimwong/git-revision-webpack-plugin");
 const gitRevisionPlugin = new GitRevisionPlugin();
