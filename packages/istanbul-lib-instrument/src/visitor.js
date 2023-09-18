@@ -2,6 +2,8 @@ import { SourceCoverage } from "./source-coverage";
 import { SHA, MAGIC_KEY, MAGIC_VALUE } from "./constants";
 import { createHash } from "crypto";
 import template from "babel-template";
+const { GitRevisionPlugin } = require("@jimwong/git-revision-webpack-plugin");
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 // istanbul ignore comment pattern
 const COMMENT_RE = /^\s*istanbul\s+ignore\s+(if|else|next)(?=\W|$)/;
@@ -540,13 +542,17 @@ const coverageTemplate = template(`
 
 var coverageTemplate_init = template(`
     (function () {
-        var path = PATH,
+        var gitInfo = GIT_INFO,
+			path = PATH,
             initial = INITIAL, 
             gcv = GLOBAL_COVERAGE_VAR, 
             global = (new Function(\'return this\'))(), 
             coverage = global[gcv] || (global[gcv] = {}); 
         
         coverage[path] = initial;
+
+		// git init
+		global["__git_info__"] = gitInfo;
     })()
 `);
 
@@ -631,6 +637,11 @@ function programVisitor(
 				.digest("hex");
 
 			// initial coverage
+
+			// 根据 remote 获取 git repo 名
+			const remote = gitRevisionPlugin.remote();
+			const remoteArr = (remote || "").split("/");
+			const project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 			var cv_init = coverageTemplate_init({
 				GLOBAL_COVERAGE_VAR: T.stringLiteral(
 					opts.coverageVariable + "_initial",
@@ -639,6 +650,15 @@ function programVisitor(
 				INITIAL: T.valueToNode(
 					Object.assign({}, coverageData, { hash }),
 				),
+				GIT_INFO: T.valueToNode({
+					commit_hash: gitRevisionPlugin.commithash(),
+					version: gitRevisionPlugin.version(),
+					branch: gitRevisionPlugin.branch(),
+					last_commit_datetime:
+						gitRevisionPlugin.lastcommitdatetime(),
+					remote,
+					project_name,
+				}),
 			});
 			path.node.body.unshift(cv_init);
 

@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/istanbul-lib-instrument",
-	"version": "1.10.1",
+	"version": "1.10.2",
 	"author": "jim wong",
 	"main": "dist/index.js",
 	"files": [
@@ -22,7 +22,8 @@
 		"babel-types": "^6.18.0",
 		"babylon": "^6.18.0",
 		"istanbul-lib-coverage": "^1.2.0",
-		"semver": "^5.3.0"
+		"semver": "^5.3.0",
+		"@jimwong/git-revision-webpack-plugin": "^5.0.0"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.3.17",

@@ -20,6 +20,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var _require = require("@jimwong/git-revision-webpack-plugin"),
+    GitRevisionPlugin = _require.GitRevisionPlugin;
+
+var gitRevisionPlugin = new GitRevisionPlugin();
+
 // istanbul ignore comment pattern
 var COMMENT_RE = /^\s*istanbul\s+ignore\s+(if|else|next)(?=\W|$)/;
 // istanbul ignore file pattern
@@ -528,7 +533,7 @@ var codeVisitor = {
 // the template to insert at the top of the program.
 var coverageTemplate = (0, _babelTemplate2.default)("\n    var COVERAGE_VAR = (function () {\n        var path = PATH,\n            hash = HASH,\n            Function = (function(){}).constructor,\n            global = (new Function('return this'))(),\n            gcv = GLOBAL_COVERAGE_VAR,\n            coverageData = INITIAL,\n            coverage = global[gcv] || (global[gcv] = {});\n        if (coverage[path] && coverage[path].hash === hash) {\n            return coverage[path];\n        }\n        coverageData.hash = hash;\n        return coverage[path] = coverageData;\n    })();\n");
 
-var coverageTemplate_init = (0, _babelTemplate2.default)("\n    (function () {\n        var path = PATH,\n            initial = INITIAL, \n            gcv = GLOBAL_COVERAGE_VAR, \n            global = (new Function('return this'))(), \n            coverage = global[gcv] || (global[gcv] = {}); \n        \n        coverage[path] = initial;\n    })()\n");
+var coverageTemplate_init = (0, _babelTemplate2.default)("\n    (function () {\n        var gitInfo = GIT_INFO,\n\t\t\tpath = PATH,\n            initial = INITIAL, \n            gcv = GLOBAL_COVERAGE_VAR, \n            global = (new Function('return this'))(), \n            coverage = global[gcv] || (global[gcv] = {}); \n        \n        coverage[path] = initial;\n\n\t\t// git init\n\t\tglobal[\"__git_info__\"] = gitInfo;\n    })()\n");
 
 // the rewire plugin (and potentially other babel middleware)
 // may cause files to be instrumented twice, see:
@@ -606,10 +611,23 @@ function programVisitor(types) {
 			var hash = (0, _crypto.createHash)(_constants.SHA).update(JSON.stringify(coverageData)).digest("hex");
 
 			// initial coverage
+
+			// 根据 remote 获取 git repo 名
+			var remote = gitRevisionPlugin.remote();
+			var remoteArr = (remote || "").split("/");
+			var project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 			var cv_init = coverageTemplate_init({
 				GLOBAL_COVERAGE_VAR: T.stringLiteral(opts.coverageVariable + "_initial"),
 				PATH: T.stringLiteral(sourceFilePath),
-				INITIAL: T.valueToNode(Object.assign({}, coverageData, { hash: hash }))
+				INITIAL: T.valueToNode(Object.assign({}, coverageData, { hash: hash })),
+				GIT_INFO: T.valueToNode({
+					commit_hash: gitRevisionPlugin.commithash(),
+					version: gitRevisionPlugin.version(),
+					branch: gitRevisionPlugin.branch(),
+					last_commit_datetime: gitRevisionPlugin.lastcommitdatetime(),
+					remote: remote,
+					project_name: project_name
+				})
 			});
 			path.node.body.unshift(cv_init);
 
