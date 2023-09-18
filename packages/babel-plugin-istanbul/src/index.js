@@ -61,12 +61,25 @@ function makeShouldSkip() {
 }
 
 function getPath(_this) {
+	const commit_hash = gitRevisionPlugin.commithash();
+	const version = gitRevisionPlugin.version();
+	const branch = gitRevisionPlugin.branch();
+	const last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
+	const remote = gitRevisionPlugin.remote();
 	// 根据 remote 获取 git repo 名
-	const remoteArr = (gitRevisionPlugin.remote() || "").split("/");
-	const projectName = remoteArr[remoteArr.length - 1].split(".")[0];
+	const remoteArr = (remote || "").split("/");
+	const project_name = remoteArr[remoteArr.length - 1].split(".")[0];
+
+	const prefix = _this.opts.prefix
+		.replace(/${commit_hash}/g, commit_hash)
+		.replace(/${version}/g, version)
+		.replace(/${branch}/g, branch)
+		.replace(/${last_commit_datetime}/g, last_commit_datetime)
+		.replace(/${remote}/g, remote)
+		.replace(/${project_name}/g, project_name);
 
 	return _this.opts.sourceFilePath === "relative"
-		? `store\\${projectName}\\${gitRevisionPlugin.branch()}\\code${getRelativepath(
+		? `${prefix}${getRelativepath(
 				_this.file.opts.filename.replace(/\//g, "\\"),
 		  )}`
 		: getRealpath(_this.file.opts.filename);
