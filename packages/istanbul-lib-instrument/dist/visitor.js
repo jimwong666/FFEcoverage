@@ -614,13 +614,17 @@ function programVisitor(types) {
 			coverageData[_constants.MAGIC_KEY] = _constants.MAGIC_VALUE;
 			var hash = (0, _crypto.createHash)(_constants.SHA).update(JSON.stringify(coverageData)).digest("hex");
 
-			// initial coverage
-			var cv_init = coverageTemplate_init({
-				GLOBAL_COVERAGE_VAR: T.stringLiteral(opts.coverageVariable + "_initial"),
-				PATH: T.stringLiteral(sourceFilePath),
-				INITIAL: T.valueToNode(Object.assign({}, coverageData, { hash: hash }))
-			});
-			path.node.body.unshift(cv_init);
+			// // initial coverage
+			// var cv_init = coverageTemplate_init({
+			// 	GLOBAL_COVERAGE_VAR: T.stringLiteral(
+			// 		opts.coverageVariable + "_initial",
+			// 	),
+			// 	PATH: T.stringLiteral(sourceFilePath),
+			// 	INITIAL: T.valueToNode(
+			// 		Object.assign({}, coverageData, { hash }),
+			// 	),
+			// });
+			// path.node.body.unshift(cv_init);
 
 			// only inject once
 			if (!alreadySetGlobalGitinfo) {
