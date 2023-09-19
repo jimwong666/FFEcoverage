@@ -61,14 +61,25 @@ function makeShouldSkip() {
 }
 
 function getPath(_this) {
-	const commit_hash = gitRevisionPlugin.commithash();
-	const version = gitRevisionPlugin.version();
-	const branch = gitRevisionPlugin.branch();
-	const last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
-	const remote = gitRevisionPlugin.remote();
-	// 根据 remote 获取 git repo 名
-	const remoteArr = (remote || "").split("/");
-	const project_name = remoteArr[remoteArr.length - 1].split(".")[0];
+	var commit_hash = "";
+	var version = "";
+	var branch = "";
+	var last_commit_datetime = "";
+	var remote = "";
+	var project_name = "";
+
+	try {
+		commit_hash = gitRevisionPlugin.commithash();
+		version = gitRevisionPlugin.version();
+		branch = gitRevisionPlugin.branch();
+		last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
+		remote = gitRevisionPlugin.remote();
+		// 根据 remote 获取 git repo 名
+		const remoteArr = (remote || "").split("/");
+		project_name = remoteArr[remoteArr.length - 1].split(".")[0];
+	} catch (err) {
+		console.log("get git info error", err);
+	}
 
 	const prefix = _this.opts.prefix
 		.replace(/\$\{commit_hash\}/g, commit_hash)
