@@ -658,18 +658,34 @@ function programVisitor(
 
 			// only inject once
 			if (!alreadySetGlobalGitinfo) {
-				// 根据 remote 获取 git repo 名
-				const remote = gitRevisionPlugin.remote();
-				const remoteArr = (remote || "").split("/");
-				const project_name =
-					remoteArr[remoteArr.length - 1].split(".")[0];
+				var commit_hash = "";
+				var version = "";
+				var branch = "";
+				var last_commit_datetime = "";
+				var remote = "";
+				var project_name = "";
+
+				try {
+					commit_hash = gitRevisionPlugin.commithash();
+					version = gitRevisionPlugin.version();
+					branch = gitRevisionPlugin.branch();
+					last_commit_datetime =
+						gitRevisionPlugin.lastcommitdatetime();
+					remote = gitRevisionPlugin.remote();
+					// 根据 remote 获取 git repo 名
+					const remoteArr = (remote || "").split("/");
+					project_name =
+						remoteArr[remoteArr.length - 1].split(".")[0];
+				} catch (err) {
+					console.log("get git info error", err);
+				}
+
 				var cv_git = coverageTemplate_gitinfo({
 					GIT_INFO: T.valueToNode({
-						commit_hash: gitRevisionPlugin.commithash(),
-						version: gitRevisionPlugin.version(),
-						branch: gitRevisionPlugin.branch(),
-						last_commit_datetime:
-							gitRevisionPlugin.lastcommitdatetime(),
+						commit_hash,
+						version,
+						branch,
+						last_commit_datetime,
 						remote,
 						project_name,
 					}),
