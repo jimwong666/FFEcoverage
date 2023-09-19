@@ -71,12 +71,12 @@ function getPath(_this) {
 	const project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 
 	const prefix = _this.opts.prefix
-		.replace(/${commit_hash}/g, commit_hash)
-		.replace(/${version}/g, version)
-		.replace(/${branch}/g, branch)
-		.replace(/${last_commit_datetime}/g, last_commit_datetime)
-		.replace(/${remote}/g, remote)
-		.replace(/${project_name}/g, project_name);
+		.replace(/\$\{commit_hash\}/g, commit_hash)
+		.replace(/\$\{version\}/g, version)
+		.replace(/\$\{branch\}/g, branch)
+		.replace(/\$\{last_commit_datetime\}/g, last_commit_datetime)
+		.replace(/\$\{remote\}/g, remote)
+		.replace(/\$\{project_name\}/g, project_name);
 
 	return _this.opts.sourceFilePath === "relative"
 		? `${prefix}${getRelativepath(

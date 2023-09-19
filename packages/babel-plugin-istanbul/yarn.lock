@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@jimwong/git-revision-webpack-plugin/-/git-revision-webpack-plugin-5.0.0.tgz#f48cff256caa0221ec7ce2cbdbdfa31016bf18c6"
   integrity sha512-9vq2SAg7hwx5/st9CMqxSCvjFgCZOjl5sJBCqZ81uIj4UPd/TWgbHKIvl5ldJ+E+yP2zg0D62k/+XEWjNI7cwQ==
 
-"@jimwong/istanbul-lib-instrument@^1.10.2":
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/@jimwong/istanbul-lib-instrument/-/istanbul-lib-instrument-1.10.2.tgz#e2dba3dbbe7a83df82f188ee4781145929d4baed"
-  integrity sha512-qN5QEXwjk2AcNJax6eQ6dE7fsKI/6b2xpNIbD/cEIFDaVpQb1lT1EogIPrsGgtp5RF9kvSNfy24rBWhZ9wKiCQ==
+"@jimwong/istanbul-lib-instrument@^1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@jimwong/istanbul-lib-instrument/-/istanbul-lib-instrument-1.10.3.tgz#92265617660f3bbcab19c6913d7da9f03f1e018a"
+  integrity sha512-k87a3Ltsnam4QFB+cB+s6QwOsncMrnMvuiraAVvtBFDyqdoocNMaNxKx6W+vCDHMAIhd3FbHX0yp5gfvOjc3RA==
   dependencies:
     "@jimwong/git-revision-webpack-plugin" "^5.0.0"
     babel-generator "^6.18.0"

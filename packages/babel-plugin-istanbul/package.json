@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/babel-plugin-istanbul",
-	"version": "4.1.11",
+	"version": "4.1.12",
 	"author": "jim wong",
 	"license": "BSD-3-Clause",
 	"main": "lib/index.js",
@@ -13,7 +13,7 @@
 	"dependencies": {
 		"babel-plugin-syntax-object-rest-spread": "^6.13.0",
 		"find-up": "^2.1.0",
-		"@jimwong/istanbul-lib-instrument": "^1.10.2",
+		"@jimwong/istanbul-lib-instrument": "^1.10.3",
 		"@jimwong/git-revision-webpack-plugin": "^5.0.0",
 		"test-exclude": "^4.2.1"
 	},
