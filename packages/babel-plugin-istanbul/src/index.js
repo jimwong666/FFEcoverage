@@ -10,7 +10,7 @@ const findUp = require("find-up");
 
 function getRealpath(n) {
 	try {
-		return realpathSync(n) || n;
+		return realpathSync(n).replace(/\\/g, "/") || n;
 	} catch (e) {
 		return n;
 	}
@@ -90,9 +90,7 @@ function getPath(_this) {
 		.replace(/\$\{project_name\}/g, project_name);
 
 	return _this.opts.sourceFilePath === "relative"
-		? `${prefix}${getRelativepath(
-				_this.file.opts.filename.replace(/\//g, "\\"),
-		  )}`
+		? `${prefix}${getRelativepath(_this.file.opts.filename)}`
 		: getRealpath(_this.file.opts.filename);
 }
 
