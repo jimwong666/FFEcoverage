@@ -29,6 +29,7 @@ const ARC = (props: ARCprops): void => {
 
 	setInterval(() => {
 		fetch(reportURL, {
+			referrerPolicy: "unsafe-url",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json;charset=utf-8",
