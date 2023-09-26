@@ -22,6 +22,7 @@ const ARC = (props: ARCprops): void => {
 
 	const {
 		interval = 5 * 60 * 1000,
+		// 开发环境 reportURL
 		reportURL = "http://localhost:8050/remote",
 		coverageVariable = "__coverage__",
 		params = {},
@@ -29,7 +30,6 @@ const ARC = (props: ARCprops): void => {
 
 	setInterval(() => {
 		fetch(reportURL, {
-			referrerPolicy: "unsafe-url",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json;charset=utf-8",
