@@ -89,7 +89,7 @@ function getPath(_this) {
 		.replace(/\$\{remote\}/g, remote)
 		.replace(/\$\{project_name\}/g, project_name);
 
-	return _this.opts.sourceFilePath === "relative"
+	return _this.opts.sourceFilePathType === "relative"
 		? `${prefix}${getRelativepath(_this.file.opts.filename)}`
 		: getRealpath(_this.file.opts.filename);
 }
