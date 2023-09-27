@@ -12,7 +12,7 @@ const COMMENT_FILE_RE = /^\s*istanbul\s+ignore\s+(file)(?=\W|$)/;
 // source map URL pattern
 const SOURCE_MAP_RE = /[#@]\s*sourceMappingURL=(.*)\s*$/m;
 // flag
-let alreadySetGlobalGitinfo = false;
+// let alreadySetGlobalGitinfo = false;
 
 // generate a variable name from hashing the supplied file path
 function genVar(filename) {
@@ -525,15 +525,19 @@ const codeVisitor = {
 	LogicalExpression: entries(coverLogicalExpression),
 };
 // the template to insert at the top of the program.
+// __git_info__ 从 单文件插入 改为 全量插入，因为担心多入口的情况
+// TODO: 如需优化，可以考虑增加babel配置传入多入口 js 文件地址，按文件增加 __git_info__ 代码
 const coverageTemplate = template(`
     var COVERAGE_VAR = (function () {
         var path = PATH,
             hash = HASH,
+            gitInfo = GIT_INFO,
             Function = (function(){}).constructor,
             global = (new Function('return this'))(),
             gcv = GLOBAL_COVERAGE_VAR,
             coverageData = INITIAL,
             coverage = global[gcv] || (global[gcv] = {});
+		global["__git_info__"] = gitInfo;
         if (coverage[path] && coverage[path].hash === hash) {
             return coverage[path];
         }
@@ -542,6 +546,7 @@ const coverageTemplate = template(`
     })();
 `);
 
+// 初始化时的上报数据
 var coverageTemplate_init = template(`
     (function () {
         var path = PATH,
@@ -554,6 +559,7 @@ var coverageTemplate_init = template(`
     })()
 `);
 
+// git 信息
 var coverageTemplate_gitinfo = template(`
     (function () {
         var gitInfo = GIT_INFO,
@@ -657,42 +663,40 @@ function programVisitor(
 			// path.node.body.unshift(cv_init);
 
 			// only inject once
-			if (!alreadySetGlobalGitinfo) {
-				var commit_hash = "";
-				var version = "";
-				var branch = "";
-				var last_commit_datetime = "";
-				var remote = "";
-				var project_name = "";
+			// if (!alreadySetGlobalGitinfo) {
+			var commit_hash = "";
+			var version = "";
+			var branch = "";
+			var last_commit_datetime = "";
+			var remote = "";
+			var project_name = "";
 
-				try {
-					commit_hash = gitRevisionPlugin.commithash();
-					version = gitRevisionPlugin.version();
-					branch = gitRevisionPlugin.branch();
-					last_commit_datetime =
-						gitRevisionPlugin.lastcommitdatetime();
-					remote = gitRevisionPlugin.remote();
-					// 根据 remote 获取 git repo 名
-					const remoteArr = (remote || "").split("/");
-					project_name =
-						remoteArr[remoteArr.length - 1].split(".")[0];
-				} catch (err) {
-					console.log("get git info error", err);
-				}
-
-				var cv_git = coverageTemplate_gitinfo({
-					GIT_INFO: T.valueToNode({
-						commit_hash,
-						version,
-						branch,
-						last_commit_datetime,
-						remote,
-						project_name,
-					}),
-				});
-				path.node.body.unshift(cv_git);
-				alreadySetGlobalGitinfo = true;
+			try {
+				commit_hash = gitRevisionPlugin.commithash();
+				version = gitRevisionPlugin.version();
+				branch = gitRevisionPlugin.branch();
+				last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
+				remote = gitRevisionPlugin.remote();
+				// 根据 remote 获取 git repo 名
+				const remoteArr = (remote || "").split("/");
+				project_name = remoteArr[remoteArr.length - 1].split(".")[0];
+			} catch (err) {
+				console.log("get git info error", err);
 			}
+
+			// var cv_git = coverageTemplate_gitinfo({
+			// 	GIT_INFO: T.valueToNode({
+			// 		commit_hash,
+			// 		version,
+			// 		branch,
+			// 		last_commit_datetime,
+			// 		remote,
+			// 		project_name,
+			// 	}),
+			// });
+			// path.node.body.unshift(cv_git);
+			// alreadySetGlobalGitinfo = true;
+			// }
 
 			// real coverage
 			const coverageNode = T.valueToNode(coverageData);
@@ -703,6 +707,14 @@ function programVisitor(
 				PATH: T.stringLiteral(sourceFilePath),
 				INITIAL: coverageNode,
 				HASH: T.stringLiteral(hash),
+				GIT_INFO: T.valueToNode({
+					commit_hash,
+					version,
+					branch,
+					last_commit_datetime,
+					remote,
+					project_name,
+				}),
 			});
 			cv._blockHoist = 5;
 			path.node.body.unshift(cv);
