@@ -106,7 +106,8 @@ function makeVisitor({ types: t }) {
 					if (shouldSkip(realPath, this.opts)) {
 						return;
 					}
-					let { inputSourceMap } = this.opts;
+					let { inputSourceMap, reportCoverageJSRelativePath } =
+						this.opts;
 					if (this.opts.useInlineSourceMaps !== false) {
 						inputSourceMap =
 							inputSourceMap || this.file.opts.inputSourceMap;
@@ -116,6 +117,7 @@ function makeVisitor({ types: t }) {
 					this.__dv__ = programVisitor(t, filePath, {
 						coverageVariable: "__coverage__",
 						inputSourceMap,
+						reportCoverageJSRelativePath,
 					});
 					this.__dv__.enter(path);
 				},
