@@ -11,8 +11,6 @@ const COMMENT_RE = /^\s*istanbul\s+ignore\s+(if|else|next)(?=\W|$)/;
 const COMMENT_FILE_RE = /^\s*istanbul\s+ignore\s+(file)(?=\W|$)/;
 // source map URL pattern
 const SOURCE_MAP_RE = /[#@]\s*sourceMappingURL=(.*)\s*$/m;
-// flag
-// let alreadySetGlobalGitinfo = false;
 
 // generate a variable name from hashing the supplied file path
 function genVar(filename) {
@@ -702,7 +700,6 @@ function programVisitor(
 					}),
 				});
 				path.node.body.unshift(cv_git);
-				alreadySetGlobalGitinfo = true;
 			}
 
 			// real coverage
