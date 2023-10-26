@@ -525,19 +525,15 @@ const codeVisitor = {
 	LogicalExpression: entries(coverLogicalExpression),
 };
 // the template to insert at the top of the program.
-// __git_info__ 从 单文件插入 改为 全量插入，因为担心多入口的情况
-// TODO: 如需优化，可以考虑增加babel配置传入多入口 js 文件地址，按文件增加 __git_info__ 代码
 const coverageTemplate = template(`
     var COVERAGE_VAR = (function () {
         var path = PATH,
             hash = HASH,
-            gitInfo = GIT_INFO,
             Function = (function(){}).constructor,
             global = (new Function('return this'))(),
             gcv = GLOBAL_COVERAGE_VAR,
             coverageData = INITIAL,
             coverage = global[gcv] || (global[gcv] = {});
-		global["__git_info__"] = gitInfo;
         if (coverage[path] && coverage[path].hash === hash) {
             return coverage[path];
         }
@@ -552,7 +548,7 @@ var coverageTemplate_init = template(`
         var path = PATH,
             initial = INITIAL, 
             gcv = GLOBAL_COVERAGE_VAR, 
-            global = (new Function(\'return this\'))(), 
+            global = (new Function('return this'))(), 
             coverage = global[gcv] || (global[gcv] = {}); 
         
         coverage[path] = initial;
@@ -563,7 +559,7 @@ var coverageTemplate_init = template(`
 var coverageTemplate_gitinfo = template(`
     (function () {
         var gitInfo = GIT_INFO,
-            global = (new Function(\'return this\'))(); 
+            global = (new Function('return this'))(); 
         
 		// git init
 		global["__git_info__"] = gitInfo;
@@ -589,6 +585,7 @@ const defaultProgramVisitorOpts = {
 	coverageVariable: "__coverage__",
 	ignoreClassMethods: [],
 	inputSourceMap: undefined,
+	reportCoverageJSRelativePath: [""],
 };
 /**
  * programVisitor is a `babel` adaptor for instrumentation.
@@ -609,6 +606,9 @@ const defaultProgramVisitorOpts = {
  * @param {string} [opts.coverageVariable=__coverage__] the global coverage variable name.
  * @param {Array} [opts.ignoreClassMethods=[]] names of methods to ignore by default on classes.
  * @param {object} [opts.inputSourceMap=undefined] the input source map, that maps the uninstrumented code back to the
+ * @param {object} [opts.reportCoverageJSRelativePath=['']] 实现自动上报功能的 js 文件的相对路径（相对于项目根目录，这很重要！！！例如：['src/index.js', 'src/utils/reportWebVitals.js']）
+ * 默认值是 ['']，即所有的 js 都需要实现了上报功能，所以所有的js都会注入 git 仓库信息，如果指定了特定数组，那么指定的这些 js 文件就需要注入 git 仓库信息；
+ * 此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O）
  * original code.
  */
 function programVisitor(
@@ -662,41 +662,48 @@ function programVisitor(
 			// });
 			// path.node.body.unshift(cv_init);
 
-			// only inject once
-			// if (!alreadySetGlobalGitinfo) {
-			var commit_hash = "";
-			var version = "";
-			var branch = "";
-			var last_commit_datetime = "";
-			var remote = "";
-			var project_name = "";
+			// sourceFilePath 是否需要注入 git 仓库信息
+			const isInjectGitInfo = opts.reportCoverageJSRelativePath.some(
+				(path) => {
+					return sourceFilePath.includes(path);
+				},
+			);
+			if (isInjectGitInfo) {
+				var commit_hash = "";
+				var version = "";
+				var branch = "";
+				var last_commit_datetime = "";
+				var remote = "";
+				var project_name = "";
 
-			try {
-				commit_hash = gitRevisionPlugin.commithash();
-				version = gitRevisionPlugin.version();
-				branch = gitRevisionPlugin.branch();
-				last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
-				remote = gitRevisionPlugin.remote();
-				// 根据 remote 获取 git repo 名
-				const remoteArr = (remote || "").split("/");
-				project_name = remoteArr[remoteArr.length - 1].split(".")[0];
-			} catch (err) {
-				console.log("get git info error", err);
+				try {
+					commit_hash = gitRevisionPlugin.commithash();
+					version = gitRevisionPlugin.version();
+					branch = gitRevisionPlugin.branch();
+					last_commit_datetime =
+						gitRevisionPlugin.lastcommitdatetime();
+					remote = gitRevisionPlugin.remote();
+					// 根据 remote 获取 git repo 名
+					const remoteArr = (remote || "").split("/");
+					project_name =
+						remoteArr[remoteArr.length - 1].split(".")[0];
+				} catch (err) {
+					console.log("get git info error", err);
+				}
+
+				var cv_git = coverageTemplate_gitinfo({
+					GIT_INFO: T.valueToNode({
+						commit_hash,
+						version,
+						branch,
+						last_commit_datetime,
+						remote,
+						project_name,
+					}),
+				});
+				path.node.body.unshift(cv_git);
+				alreadySetGlobalGitinfo = true;
 			}
-
-			// var cv_git = coverageTemplate_gitinfo({
-			// 	GIT_INFO: T.valueToNode({
-			// 		commit_hash,
-			// 		version,
-			// 		branch,
-			// 		last_commit_datetime,
-			// 		remote,
-			// 		project_name,
-			// 	}),
-			// });
-			// path.node.body.unshift(cv_git);
-			// alreadySetGlobalGitinfo = true;
-			// }
 
 			// real coverage
 			const coverageNode = T.valueToNode(coverageData);
@@ -707,14 +714,6 @@ function programVisitor(
 				PATH: T.stringLiteral(sourceFilePath),
 				INITIAL: coverageNode,
 				HASH: T.stringLiteral(hash),
-				GIT_INFO: T.valueToNode({
-					commit_hash,
-					version,
-					branch,
-					last_commit_datetime,
-					remote,
-					project_name,
-				}),
 			});
 			cv._blockHoist = 5;
 			path.node.body.unshift(cv);

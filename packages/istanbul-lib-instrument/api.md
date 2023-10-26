@@ -106,5 +106,8 @@ The exit function returns an object that currently has the following keys:
 -   `opts` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** additional options (optional, default `defaultProgramVisitorOpts`)
     -   `opts.coverageVariable` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the global coverage variable name. (optional, default `__coverage__`)
     -   `opts.ignoreClassMethods` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** names of methods to ignore by default on classes. (optional, default `[]`)
-    -   `opts.inputSourceMap` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the input source map, that maps the uninstrumented code back to the
-        original code. (optional, default `undefined`)
+    -   `opts.inputSourceMap` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the input source map, that maps the uninstrumented code back to the (optional, default `undefined`)
+    -   `opts.reportCoverageJSRelativePath` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 实现自动上报功能的 js 文件的相对路径（相对于项目根目录，这很重要！！！例如：['src/index.js', 'src/utils/reportWebVitals.js']）
+        默认值是 ['']，即所有的 js 都需要实现了上报功能，所以所有的js都会注入 git 仓库信息，如果指定了特定数组，那么指定的这些 js 文件就需要注入 git 仓库信息；
+        此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O）
+        original code. (optional, default `['']`)
