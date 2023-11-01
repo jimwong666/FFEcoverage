@@ -32,7 +32,7 @@ const reportCoverage = (
 		},
 		body: JSON.stringify({
 			data: global[coverageVariable],
-			incrementCoverageDir: global.__increment_coverage_dir__,
+			increment_coverage_dir: global.__increment_coverage_dir__,
 			...global.__git_info__,
 			...params,
 		}),
