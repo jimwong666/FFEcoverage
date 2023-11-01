@@ -81,7 +81,7 @@ function getPath(_this) {
 		console.log("get git info error", err);
 	}
 
-	const prefix = _this.opts.prefix
+	const relativePathPrefix = _this.opts.relativePathPrefix
 		.replace(/\$\{commit_hash\}/g, commit_hash)
 		.replace(/\$\{version\}/g, version)
 		.replace(/\$\{branch\}/g, branch)
@@ -89,8 +89,8 @@ function getPath(_this) {
 		.replace(/\$\{remote\}/g, remote)
 		.replace(/\$\{project_name\}/g, project_name);
 
-	return _this.opts.sourceFilePathType === "relative"
-		? `${prefix}${getRelativepath(_this.file.opts.filename)}`
+	return _this.opts.filePathLocationType === "relative"
+		? `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`
 		: getRealpath(_this.file.opts.filename);
 }
 
@@ -106,8 +106,11 @@ function makeVisitor({ types: t }) {
 					if (shouldSkip(realPath, this.opts)) {
 						return;
 					}
-					let { inputSourceMap, reportCoverageJSRelativePath } =
-						this.opts;
+					let {
+						inputSourceMap,
+						needInjectGitInfoJsPathArr,
+						incrementCoverageDir,
+					} = this.opts;
 					if (this.opts.useInlineSourceMaps !== false) {
 						inputSourceMap =
 							inputSourceMap || this.file.opts.inputSourceMap;
@@ -117,7 +120,8 @@ function makeVisitor({ types: t }) {
 					this.__dv__ = programVisitor(t, filePath, {
 						coverageVariable: "__coverage__",
 						inputSourceMap,
-						reportCoverageJSRelativePath,
+						needInjectGitInfoJsPathArr,
+						incrementCoverageDir,
 					});
 					this.__dv__.enter(path);
 				},
