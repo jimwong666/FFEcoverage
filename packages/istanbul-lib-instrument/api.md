@@ -111,4 +111,4 @@ The exit function returns an object that currently has the following keys:
         默认值是 ['']，即所有的 js 都需要实现了上报功能，所以所有的js都会注入 git 仓库信息，如果指定了特定数组，那么指定的这些 js 文件就需要注入 git 仓库信息；
         此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O） (optional, default `['']`)
     -   `opts.incrementCoverageDir` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
-        original code. (optional, default `['']`)
+        original code. (optional, default `''`)
