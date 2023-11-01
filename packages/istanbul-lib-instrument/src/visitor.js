@@ -557,10 +557,13 @@ var coverageTemplate_init = template(`
 var coverageTemplate_gitinfo = template(`
     (function () {
         var gitInfo = GIT_INFO,
+			incrementCoverageDir = INCREMENTCOVERAGEDIR,
             global = (new Function('return this'))(); 
         
 		// git init
 		global["__git_info__"] = gitInfo;
+		global["__increment_coverage_dir__"] = incrementCoverageDir;
+		
     })()
 `);
 
@@ -583,7 +586,8 @@ const defaultProgramVisitorOpts = {
 	coverageVariable: "__coverage__",
 	ignoreClassMethods: [],
 	inputSourceMap: undefined,
-	reportCoverageJSRelativePath: [""],
+	needInjectGitInfoJsPathArr: [""],
+	incrementCoverageDir,
 };
 /**
  * programVisitor is a `babel` adaptor for instrumentation.
@@ -604,9 +608,10 @@ const defaultProgramVisitorOpts = {
  * @param {string} [opts.coverageVariable=__coverage__] the global coverage variable name.
  * @param {Array} [opts.ignoreClassMethods=[]] names of methods to ignore by default on classes.
  * @param {object} [opts.inputSourceMap=undefined] the input source map, that maps the uninstrumented code back to the
- * @param {object} [opts.reportCoverageJSRelativePath=['']] 实现自动上报功能的 js 文件的相对路径（相对于项目根目录，这很重要！！！例如：['src/index.js', 'src/utils/reportWebVitals.js']）
+ * @param {Array} [opts.needInjectGitInfoJsPathArr=['']] 实现自动上报功能的 js 文件的相对路径（相对于项目根目录，这很重要！！！例如：['src/index.js', 'src/utils/reportWebVitals.js']）
  * 默认值是 ['']，即所有的 js 都需要实现了上报功能，所以所有的js都会注入 git 仓库信息，如果指定了特定数组，那么指定的这些 js 文件就需要注入 git 仓库信息；
  * 此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O）
+ * @param {string} [opts.incrementCoverageDir=['']] 表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
  * original code.
  */
 function programVisitor(
@@ -661,7 +666,7 @@ function programVisitor(
 			// path.node.body.unshift(cv_init);
 
 			// sourceFilePath 是否需要注入 git 仓库信息
-			const isInjectGitInfo = opts.reportCoverageJSRelativePath.some(
+			const isInjectGitInfo = opts.needInjectGitInfoJsPathArr.some(
 				(path) => {
 					return sourceFilePath.includes(path);
 				},
@@ -698,6 +703,9 @@ function programVisitor(
 						remote,
 						project_name,
 					}),
+					INCREMENTCOVERAGEDIR: T.stringLiteral(
+						opts.incrementCoverageDir,
+					),
 				});
 				path.node.body.unshift(cv_git);
 			}
