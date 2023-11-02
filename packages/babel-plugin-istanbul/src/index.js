@@ -61,6 +61,14 @@ function makeShouldSkip() {
 }
 
 function getPath(_this) {
+	const relativePathPrefix = getRelativePathPrefix(_this);
+
+	return _this.opts.filePathLocationType === "relative"
+		? `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`
+		: getRealpath(_this.file.opts.filename);
+}
+
+function getRelativePathPrefix(_this) {
 	var commit_hash = "";
 	var version = "";
 	var branch = "";
@@ -81,14 +89,6 @@ function getPath(_this) {
 		console.log("get git info error", err);
 	}
 
-	const relativePathPrefix = getRelativePathPrefix(_this);
-
-	return _this.opts.filePathLocationType === "relative"
-		? `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`
-		: getRealpath(_this.file.opts.filename);
-}
-
-function getRelativePathPrefix(_this) {
 	const relativePathPrefix = _this.opts.relativePathPrefix
 		.replace(/\$\{commit_hash\}/g, commit_hash)
 		.replace(/\$\{version\}/g, version)
