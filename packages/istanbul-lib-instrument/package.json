@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/istanbul-lib-instrument",
-	"version": "1.10.10",
+	"version": "1.10.11",
 	"author": "jim wong",
 	"main": "dist/index.js",
 	"files": [

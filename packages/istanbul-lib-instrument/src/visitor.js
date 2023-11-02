@@ -558,12 +558,13 @@ var coverageTemplate_gitinfo = template(`
     (function () {
         var gitInfo = GIT_INFO,
 			incrementCoverageDir = INCREMENTCOVERAGEDIR,
+			relativePathPrefix = RELATIVEPATHPREFIX,
             global = (new Function('return this'))(); 
         
 		// git init
 		global["__git_info__"] = gitInfo;
 		global["__increment_coverage_dir__"] = incrementCoverageDir;
-		
+		global["__relative_path_prefix__"] = relativePathPrefix;
     })()
 `);
 
@@ -588,6 +589,7 @@ const defaultProgramVisitorOpts = {
 	inputSourceMap: undefined,
 	needInjectGitInfoJsPathArr: [""],
 	incrementCoverageDir: "",
+	relativePathPrefix: "",
 };
 /**
  * programVisitor is a `babel` adaptor for instrumentation.
@@ -612,6 +614,7 @@ const defaultProgramVisitorOpts = {
  * 默认值是 ['']，即所有的 js 都需要实现了上报功能，所以所有的js都会注入 git 仓库信息，如果指定了特定数组，那么指定的这些 js 文件就需要注入 git 仓库信息；
  * 此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O）
  * @param {string} [opts.incrementCoverageDir=''] 表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
+ * @param {string} [opts.relativePathPrefix=''] 表示再相对路径的模式下，生成的代码覆盖率文件中，文件覆盖率对象的`key`的前缀（即相对路径的前缀，以满足自定义路径的需求），比如 `src`，表示生成的代码覆盖率文件中，文件路径的前缀是 `src/xx/xx`
  * original code.
  */
 function programVisitor(
@@ -705,6 +708,9 @@ function programVisitor(
 					}),
 					INCREMENTCOVERAGEDIR: T.stringLiteral(
 						opts.incrementCoverageDir,
+					),
+					RELATIVEPATHPREFIX: T.stringLiteral(
+						opts.relativePathPrefix,
 					),
 				});
 				path.node.body.unshift(cv_git);
