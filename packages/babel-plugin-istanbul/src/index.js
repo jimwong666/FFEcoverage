@@ -110,6 +110,7 @@ function makeVisitor({ types: t }) {
 						inputSourceMap,
 						needInjectGitInfoJsPathArr,
 						incrementCoverageDir,
+						relativePathPrefix,
 					} = this.opts;
 					if (this.opts.useInlineSourceMaps !== false) {
 						inputSourceMap =
@@ -122,6 +123,7 @@ function makeVisitor({ types: t }) {
 						inputSourceMap,
 						needInjectGitInfoJsPathArr,
 						incrementCoverageDir,
+						relativePathPrefix,
 					});
 					this.__dv__.enter(path);
 				},
