@@ -126,9 +126,7 @@ function detailTemplate(data, incrementLines = []) {
 			const isIncrementLine = incrementLines.some((lines) => {
 				const linesArr = lines.split(",");
 
-				return (
-					Number(linesArr[0]) <= line && line <= Number(linesArr[1])
-				);
+				return Number(linesArr[0]) <= num && num <= Number(linesArr[1]);
 			});
 
 			return isIncrementLine
