@@ -126,26 +126,15 @@ function detailTemplate(data, incrementLines = []) {
 			const isIncrementLine = incrementLines.some((lines) => {
 				const linesArr = lines.split(",");
 
-				return Number(linesArr[0]) <= num && num <= Number(linesArr[1]);
+				return (
+					Number(linesArr[0]) <= num &&
+					num <= Number(linesArr[1]) + Number(linesArr[0]) - 1
+				);
 			});
 
 			return isIncrementLine
-				? `<a name='L${num}'></a><a href='#L${num}'>
-                        ${num}
-                        <span style="
-                            display: inline-block;
-                            width: 46px;
-                            color: #fff;
-                            font-weight: bold;
-                            background: red;
-                            text-align: center;
-                            margin-left: 10px;
-                        ">变更行</span>
-                    </a>`
-				: `<a name='L${num}'></a><a href='#L${num}'>
-                        ${num}
-                        <span style="display: inline-block;width: 46px;color: #fff;font-weight: bold;text-align: center;margin-left: 10px;"></span>
-                    </a>`;
+				? `<a name='L${num}'></a><a href='#L${num}'>${num}<span style="display: inline-block;width: 46px;color: #fff;font-weight: bold;background: red;text-align: center;margin-left: 10px;">变更行</span></a>`
+				: `<a name='L${num}'></a><a href='#L${num}'>${num}<span style="display: inline-block;width: 46px;color: #fff;font-weight: bold;text-align: center;margin-left: 10px;"></span></a>`;
 		}
 	};
 	const lineCount = (line) =>
