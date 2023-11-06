@@ -133,7 +133,7 @@ function detailTemplate(data, incrementLines = []) {
 			});
 
 			return isIncrementLine
-				? `<a name='L${num}'></a><a href='#L${num}'>${num}<span style="display: inline-block;width: 7px;color: #fff;font-weight: bold;background: red;text-align: center;margin-left: 5px;height: 7px;border-radius: 3.5px;">变更行</span></a>`
+				? `<a name='L${num}'></a><a href='#L${num}'>${num}<span style="display: inline-block;width: 7px;color: #fff;font-weight: bold;background: red;text-align: center;margin-left: 5px;height: 7px;border-radius: 3.5px;"></span></a>`
 				: `<a name='L${num}'></a><a href='#L${num}'>${num}<span style="display: inline-block;width: 7px;color: #fff;font-weight: bold;text-align: center;margin-left: 5px;height: 7px;"></span></a>`;
 		}
 	};
