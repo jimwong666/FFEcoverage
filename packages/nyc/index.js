@@ -445,7 +445,7 @@ class NYC {
 
   async report () {
     const libReport = require('istanbul-lib-report')
-    const reports = require('istanbul-reports')
+    const reports = require('@jimwong/istanbul-reports')
 
     const context = libReport.createContext({
       dir: this.reportDirectory(),
