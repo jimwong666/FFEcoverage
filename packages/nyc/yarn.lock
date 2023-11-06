@@ -272,10 +272,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@jimwong/istanbul-reports@^3.1.8":
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/@jimwong/istanbul-reports/-/istanbul-reports-3.1.8.tgz#e9f13e3432ef949af401d9118a9c5f192efad351"
-  integrity sha512-spSlN7zfhmdlTmLfBa0RG97+7Jfq3Rlya3nvvrykYda6VN4TMn/j3CFJPRCSY+be1JBx4IsDGsiE/UuCq/YftQ==
+"@jimwong/istanbul-reports@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@jimwong/istanbul-reports/-/istanbul-reports-3.1.9.tgz#836e8b86f6874f4bdbd174e07de5c6c9c4e4fa2f"
+  integrity sha512-8LI5ettcKROa4ecWTHKUPXbwxUYVWmQxNU78yxBNl2kbo46hjHv2sZMSz1nNrYiu0Vl0Gc49TfsGtJeh9qJQ3A==
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
