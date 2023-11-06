@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [15.2.0](https://github.com/jimwong666/istanbul-reports/compare/v15.1.1...v15.2.0) (2023-11-06)
+
+
+### Features
+
+* 问题修复 ([6d86b6b](https://github.com/jimwong666/istanbul-reports/commit/6d86b6b4ea5dd1631dfe8bab8eb33acff2e283ba))
+
 ### 15.1.1 (2023-11-06)
 
 ## [15.1.0](https://github.com/istanbuljs/nyc/compare/v15.0.1...v15.1.0) (2020-06-01)

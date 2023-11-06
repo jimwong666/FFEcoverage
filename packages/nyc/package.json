@@ -1,6 +1,6 @@
 {
   "name": "@jimwong/nyc",
-  "version": "15.1.1",
+  "version": "15.2.0",
   "description": "the Istanbul command line interface",
   "author": "jim wong",
   "main": "index.js",
