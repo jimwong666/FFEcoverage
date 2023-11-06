@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [15.4.1](https://github.com/jimwong666/istanbul-reports/compare/v15.4.0...v15.4.1) (2023-11-06)
+
 ## [15.4.0](https://github.com/jimwong666/istanbul-reports/compare/v15.3.0...v15.4.0) (2023-11-06)
 
 
