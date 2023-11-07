@@ -2,7 +2,7 @@
 	"name": "@jimwong/auto-report-coverage",
 	"version": "0.0.13",
 	"description": "",
-	"main": "./dist/index.js",
+	"main": "./dist/index.cjs",
 	"module": "./dist/index.esm.js",
 	"umd": "./dist/index.umd.js",
 	"types": "./dist/types/index.d.ts",
