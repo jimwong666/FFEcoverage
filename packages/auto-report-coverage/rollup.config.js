@@ -11,7 +11,7 @@ const pkg = JSON.parse(
 	fs.readFileSync(new URL("./package.json", import.meta.url), "utf8"),
 );
 const env = process.env.NODE_ENV; // umd 模式的编译结果文件输出的全局变量名称
-const name = "RollupTsTemplate";
+const name = "ARC";
 
 const config = {
 	// 入口文件，src/index.ts
