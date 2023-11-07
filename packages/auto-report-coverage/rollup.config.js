@@ -5,7 +5,6 @@ import rollupTypescript from "rollup-plugin-typescript2";
 import babel from "@rollup/plugin-babel";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
 import { terser } from "rollup-plugin-terser"; // 读取 package.json 配置
-import { fileURLToPath } from "url";
 import json from "@rollup/plugin-json";
 
 const pkg = JSON.parse(
@@ -14,13 +13,9 @@ const pkg = JSON.parse(
 const env = process.env.NODE_ENV; // umd 模式的编译结果文件输出的全局变量名称
 const name = "RollupTsTemplate";
 
-console.log(
-	"../src/index.ts",
-	fileURLToPath(new URL("./src/index.ts", import.meta.url).href),
-);
 const config = {
 	// 入口文件，src/index.ts
-	input: fileURLToPath(new URL("./src/index.ts", import.meta.url).href),
+	input: "src/index.ts",
 	// 输出文件
 	output: [
 		// commonjs
