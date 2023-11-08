@@ -1,6 +1,6 @@
 exports.init = function (grunt) {
 	"use strict";
-
+	var COVERAGEBARIABLE = "__coverage__";
 	var chalk = require("chalk");
 
 	var fs = require("fs");
@@ -143,6 +143,7 @@ exports.init = function (grunt) {
           ${arcCode}
           ARC({
             reportURL: "${reportURL}",
+            coverageVariable: "${options.coverageVar || COVERAGEBARIABLE}",
             interval: ${autoReportInterval},
           });
 
@@ -241,7 +242,7 @@ exports.init = function (grunt) {
 		},
 		addUncoveredFiles: function (coverage, options, allFiles) {
 			var instrumenter = new istanbul.Instrumenter({
-				coverageVariable: options.coverageVar,
+				coverageVariable: options.coverageVar || COVERAGEBARIABLE,
 				preserveComments: false,
 			});
 			var transformer = instrumenter.instrumentSync.bind(instrumenter);
