@@ -106,6 +106,7 @@ var plugin = (module.exports = function (opts) {
 
         ARC({
           reportURL: "${opts.reportURL}",
+          coverageVariable: "${opts.coverageVariable || COVERAGE_VARIABLE}",
           interval: ${opts.autoReportInterval},
         });`,
       function (err, code) {
