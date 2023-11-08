@@ -1,0 +1,54 @@
+{
+	"name": "@jimwong/grunt-istanbul",
+	"description": "JavaScript codecoverage tool for Grunt",
+	"version": "0.8.1",
+	"homepage": "https://github.com/jimwong666/grunt-istanbul",
+	"author": "jim wong",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jimwong666/grunt-istanbul.git"
+	},
+	"bugs": {
+		"url": "https://github.com/jimwong666/grunt-istanbul/issues"
+	},
+	"license": "MIT",
+	"main": "Gruntfile.js",
+	"bin": "bin/grunt-istanbul",
+	"engines": {
+		"node": "~0.12.0"
+	},
+	"scripts": {
+		"test": "grunt test"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@jimwong/auto-report-coverage": "0.0.17",
+		"@jimwong/git-revision-webpack-plugin": "^5.0.0",
+		"chalk": "1.1.1",
+		"istanbul": "~0.4.2",
+		"nue": "0.7.1"
+	},
+	"peerDependencies": {
+		"grunt": ">=0.4.0"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.5",
+		"grunt-contrib-jshint": "~0.12.0",
+		"grunt-contrib-nodeunit": "~0.4.1",
+		"grunt-contrib-clean": "~0.7.0",
+		"isparta": "^2.2.0",
+		"mkdirp": "~0.5.1",
+		"rimraf": "~2.5.1",
+		"dateformat": "~1.0.12"
+	},
+	"keywords": [
+		"gruntplugin",
+		"coverage",
+		"code coverage",
+		"JS code coverage",
+		"JS coverage",
+		"istanbul"
+	]
+}
