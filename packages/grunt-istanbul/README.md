@@ -1,7 +1,7 @@
 # @jimwong/grunt-istanbul [![Build Status](https://travis-ci.org/taichi/grunt-istanbul.png)](https://travis-ci.org/taichi/grunt-istanbul)
 
 基于 grunt-istanbul@0.8.0 版本修改，主要修改内容如下：
-1、增加覆盖率上报逻辑代码，并利用 istanbul 库，注入到各个经过 gulp 处理的 js 文件 xxxxxxxxxxxxxxxxxxxxxxxxxx
+1、增加参数和注入覆盖率上报的代码到各个 js 文件中
 
 JavaScript codecoverage tool for Grunt
 
