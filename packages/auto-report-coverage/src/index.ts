@@ -2,6 +2,8 @@ export interface ARCprops {
 	coverageVariable?: string;
 	interval?: number;
 	reportURL?: string;
+	successCallback?: () => void;
+	failedCallback?: () => void;
 	params?: Record<string, unknown>;
 }
 
@@ -23,6 +25,8 @@ const global: Global = new Function("return this")();
 const reportCoverage = (
 	reportURL: string,
 	coverageVariable: string,
+	successCallback: () => void,
+	failedCallback: () => void,
 	params: Record<string, any>,
 ) => {
 	fetch(reportURL, {
@@ -62,11 +66,15 @@ const reportCoverage = (
 						cocerageData[i].s[n] = 0;
 					}
 				}
+				successCallback();
 			} else {
 				throw new Error(message);
 			}
 		})
-		.catch((err) => console.log("Request Failed", err));
+		.catch((err) => {
+			console.log("Request Failed", err);
+			failedCallback();
+		});
 };
 
 const ARC = (props: ARCprops): void => {
@@ -78,16 +86,30 @@ const ARC = (props: ARCprops): void => {
 		// 开发环境 reportURL
 		reportURL = "http://localhost:8050/remote",
 		coverageVariable = "__coverage__",
+		successCallback = () => {},
+		failedCallback = () => {},
 		params = {},
 	} = props || {};
 
 	setInterval(() => {
-		reportCoverage(reportURL, coverageVariable, params);
+		reportCoverage(
+			reportURL,
+			coverageVariable,
+			successCallback,
+			failedCallback,
+			params,
+		);
 	}, interval);
 
 	// 2、页面关闭时上报
 	window.onbeforeunload = () => {
-		reportCoverage(reportURL, coverageVariable, params);
+		reportCoverage(
+			reportURL,
+			coverageVariable,
+			successCallback,
+			failedCallback,
+			params,
+		);
 	};
 };
 

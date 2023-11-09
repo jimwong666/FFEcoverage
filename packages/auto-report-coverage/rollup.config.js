@@ -4,7 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import rollupTypescript from "rollup-plugin-typescript2";
 import babel from "@rollup/plugin-babel";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
-import { terser } from "rollup-plugin-terser"; // 读取 package.json 配置
+import { terser } from "rollup-plugin-terser";
 import json from "@rollup/plugin-json";
 
 const pkg = JSON.parse(
@@ -55,11 +55,6 @@ const config = {
 			extensions: [...DEFAULT_EXTENSIONS, ".ts"],
 		}),
 		json(),
-	],
-};
-// 若打包正式环境，压缩代码
-if (env === "production") {
-	config.plugins.push(
 		terser({
 			compress: {
 				pure_getters: true,
@@ -68,7 +63,7 @@ if (env === "production") {
 				warnings: false,
 			},
 		}),
-	);
-}
+	],
+};
 
 export default config;

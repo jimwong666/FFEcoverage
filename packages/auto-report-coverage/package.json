@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/auto-report-coverage",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"description": "",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.esm.js",
