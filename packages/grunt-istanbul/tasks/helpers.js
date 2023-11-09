@@ -143,7 +143,7 @@ exports.init = function (grunt) {
           ${arcCode}
           ARC({
             reportURL: "${reportURL}",
-            coverageVariable: "${options.coverageVar || COVERAGEBARIABLE}",
+            coverageVariable: "${options.coverageVariable || COVERAGEBARIABLE}",
             interval: ${autoReportInterval},
           });
 
@@ -242,7 +242,7 @@ exports.init = function (grunt) {
 		},
 		addUncoveredFiles: function (coverage, options, allFiles) {
 			var instrumenter = new istanbul.Instrumenter({
-				coverageVariable: options.coverageVar || COVERAGEBARIABLE,
+				coverageVariable: options.coverageVariable || COVERAGEBARIABLE,
 				preserveComments: false,
 			});
 			var transformer = instrumenter.instrumentSync.bind(instrumenter);
