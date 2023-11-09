@@ -23,7 +23,7 @@ exports.init = function (grunt) {
 	);
 	var GitRevisionPlugin =
 		require("@jimwong/git-revision-webpack-plugin").GitRevisionPlugin;
-	const gitRevisionPlugin = new GitRevisionPlugin();
+	var gitRevisionPlugin = new GitRevisionPlugin();
 	var commit_hash = gitRevisionPlugin.commithash() || "";
 	var version = gitRevisionPlugin.version() || "";
 	var branch = gitRevisionPlugin.branch() || "";
@@ -141,11 +141,14 @@ exports.init = function (grunt) {
           window.__relative_path_prefix__ = "${relativePathPrefix}";
 
           ${arcCode}
-          ARC({
-            reportURL: "${reportURL}",
-            coverageVariable: "${options.coverageVariable || COVERAGEBARIABLE}",
-            interval: ${autoReportInterval},
-          });
+		  if(!window.ARCiaActive) {
+			window.ARCiaActive = true;
+			ARC({
+				reportURL: "${reportURL}",
+				coverageVariable: "${options.coverageVariable || COVERAGEBARIABLE}",
+				interval: ${autoReportInterval},
+			});
+		  }
 
           ${result.code}
           `,
