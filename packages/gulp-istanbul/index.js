@@ -103,12 +103,14 @@ var plugin = (module.exports = function (opts) {
         window.__relative_path_prefix__ = "${relativePathPrefix}";
 
         ${arcCode}
-
-        ARC({
-          reportURL: "${opts.reportURL}",
-          coverageVariable: "${opts.coverageVariable || COVERAGE_VARIABLE}",
-          interval: ${opts.autoReportInterval},
-        });`,
+        if(!window.ARCiaActive) {
+          window.ARCiaActive = true;
+          ARC({
+            reportURL: "${opts.reportURL}",
+            coverageVariable: "${opts.coverageVariable || COVERAGE_VARIABLE}",
+            interval: ${opts.autoReportInterval},
+          });
+        }`,
       function (err, code) {
         if (err) {
           return cb(

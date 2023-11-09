@@ -21,10 +21,10 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@jimwong/auto-report-coverage@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@jimwong/auto-report-coverage/-/auto-report-coverage-0.0.16.tgz#314b7dd68fbfe022b660ab7a96b5b9fc9f0a6cab"
-  integrity sha512-EPfGsvdJVYBMNAgWymmLYEHxgEizh48uog6TDOqhapSFSEk09KaPVpxZv0ZOYYZ82t+7KVjk80SKIOxW+O9buA==
+"@jimwong/auto-report-coverage@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@jimwong/auto-report-coverage/-/auto-report-coverage-0.0.18.tgz#2bb8002f01f5cd388ba5658af5b728578169f266"
+  integrity sha512-8S3zQneTKIhZU2VJ5tuzZHm8r7V9moyC8vOutR1Sw1b8mdfuKbualWLyHhUwOGt6136raxCtc8LvklOt5s1l6g==
 
 "@jimwong/git-revision-webpack-plugin@^5.0.0":
   version "5.0.0"
