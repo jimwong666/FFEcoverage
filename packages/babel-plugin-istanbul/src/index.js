@@ -124,8 +124,10 @@ function makeVisitor({ types: t }) {
 					}
 
 					const filePath = getPath(this);
+					var coverageVariable =
+						this.opts.coverageVariable || "__coverage__";
 					this.__dv__ = programVisitor(t, filePath, {
-						coverageVariable: "__coverage__",
+						coverageVariable: coverageVariable,
 						inputSourceMap,
 						needInjectGitInfoJsPathArr,
 						incrementCoverageDir,
