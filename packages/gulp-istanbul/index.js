@@ -58,9 +58,10 @@ var plugin = (module.exports = function (opts) {
       return cb(new PluginError(PLUGIN_NAME, "streams not supported"));
     }
 
-    // opts.filePathLocationType 本地文件路径类型：相对路径 或者 绝对路径（默认）
+    // opts.filePathLocationType 本地文件路径类型：相对路径（默认） 或者 绝对路径
     // opts.relativePathPrefix 相对路径的路径前缀
-    var filepath = normalizePathSep(file.path).replace(/\\/g, "/");
+    var _relativePathPrefix =
+      opts.relativePathPrefix || "store/${project_name}/${branch}/code";
     var commit_hash = gitRevisionPlugin.commithash() || "";
     var version = gitRevisionPlugin.version() || "";
     var branch = gitRevisionPlugin.branch() || "";
@@ -69,7 +70,7 @@ var plugin = (module.exports = function (opts) {
     var remoteArr = (remote || "").split("/");
     var project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 
-    var relativePathPrefix = opts.relativePathPrefix
+    var relativePathPrefix = _relativePathPrefix
       .replace(/\$\{commit_hash\}/g, commit_hash)
       .replace(/\$\{version\}/g, version)
       .replace(/\$\{branch\}/g, branch)
@@ -77,11 +78,15 @@ var plugin = (module.exports = function (opts) {
       .replace(/\$\{remote\}/g, remote)
       .replace(/\$\{project_name\}/g, project_name);
 
-    // 相对路径时
-    if (opts.filePathLocationType === "relative") {
-      var cwd = realpathSync(process.cwd()).replace(/\\/g, "/");
-      var arr = filepath.split(cwd);
-      filepath = relativePathPrefix + arr[1] || filepath;
+    // 相对路径
+    var _filepath = normalizePathSep(file.path).replace(/\\/g, "/");
+    var cwd = realpathSync(process.cwd()).replace(/\\/g, "/");
+    var arr = _filepath.split(cwd);
+    var filepath = relativePathPrefix + arr[1] || _filepath;
+
+    // 相对路径
+    if (opts.filePathLocationType === "absolute") {
+      filepath = _filepath;
     }
 
     // git 仓库信息
