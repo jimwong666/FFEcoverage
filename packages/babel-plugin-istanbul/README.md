@@ -2,7 +2,7 @@
 
 基于 babel-plugin-istanbu@4.1.6，适用于 babel6，用法基本相同，但有 2 点不同：
 
-1. 增加可选参数 `filePathLocationType`，如果改为 `relative` 则表示覆盖率数据的 `键名` 为相对路径(相对于 cwd 的路径，一般是根目录)，使用 `prefix` 参数还可以在相对路径前增加自定义路径；不设置参数是绝对路径(打包机器上文件的绝对路径)
+1. 增加可选参数 `filePathLocationType`，默认覆盖率数据的 `键名` 为相对路径(相对于 cwd 的路径，一般是根目录)，使用 `prefix` 参数还可以在相对路径前增加自定义路径；设置 `absolute` 是绝对路径(打包机器上文件的绝对路径)
 2. 增加可选参数 `relativePathPrefix` ，用于在相对路径的前面加上特定的前缀，比如 `code/`，其中可以选填某些已配置好的 git 相关的参数，比如 `store/${project_name}/${branch}/code`，参数如下：
     1. `${commit_hash}`，会替换成 commit 的 hash 值
     2. `${version}`，会替换成 git 仓库的 version
