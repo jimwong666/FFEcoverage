@@ -11,6 +11,8 @@
    6. `${project_name}`，会替换成项目名
 2. 增加可选参数 `incrementCoverageDir`，表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
 3. 增加可选参数 `coverageVariable`，表示覆盖率数据在全局对象下面的变量名，默认是 `__coverage__`
+4. 增加可选参数 `reportURL`，覆盖率上报地址
+5. 增加可选参数 `autoReportInterval`，覆盖率自动上报的时间间隔（ms）
 
 [Istanbul][istanbul] unit test coverage plugin for [gulp][gulp].
 
