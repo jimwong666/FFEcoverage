@@ -1,7 +1,19 @@
 # @jimwong/grunt-istanbul [![Build Status](https://travis-ci.org/taichi/grunt-istanbul.png)](https://travis-ci.org/taichi/grunt-istanbul)
 
-基于 grunt-istanbul@0.8.0 版本修改，主要修改内容如下：
-1、增加参数和注入覆盖率上报的代码到各个 js 文件中
+基于 grunt-istanbul@0.8.0 版本修改，增加参数和注入覆盖率上报的代码到各个 js 文件中，主要修改内容如下：
+
+1. 增加可选参数 `relativePathPrefix` ，用于在相对路径的前面加上特定的前缀，比如 `code/`，其中可以选填某些已配置好的 git 相关的参数，比如 `store/${project_name}/${branch}/code`，参数如下：
+    1. `${commit_hash}`，会替换成 commit 的 hash 值
+    2. `${version}`，会替换成 git 仓库的 version
+    3. `${branch}`，会替换成当前分支名
+    4. `${last_commit_datetime}`，会替换成上次提交的时间
+    5. `${remote}`，会替换成远程仓库的地址
+    6. `${project_name}`，会替换成项目名
+2. 增加可选参数 `incrementCoverageDir`，表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
+3. 增加可选参数 `coverageVariable`，表示覆盖率数据在全局对象下面的变量名，默认是 `__coverage__`
+4. 增加可选参数 `reportURL`，覆盖率上报地址
+5. 增加可选参数 `autoReportInterval`，覆盖率自动上报的时间间隔（ms）
+   `其他参数为此库原本的参数，未作修改`
 
 JavaScript codecoverage tool for Grunt
 

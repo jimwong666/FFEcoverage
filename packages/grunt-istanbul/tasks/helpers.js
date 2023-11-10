@@ -87,8 +87,11 @@ exports.init = function (grunt) {
 			};
 
 			var tally = { instrumented: 0, skipped: 0 };
+			var _relativePathPrefix =
+				options.relativePathPrefix ||
+				"store/${project_name}/${branch}/code";
 			var relativePathPrefix =
-				options.relativePathPrefix
+				_relativePathPrefix
 					.replace(/\$\{commit_hash\}/g, commit_hash)
 					.replace(/\$\{version\}/g, version)
 					.replace(/\$\{branch\}/g, branch)
