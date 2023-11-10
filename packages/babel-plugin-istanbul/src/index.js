@@ -63,12 +63,14 @@ function makeShouldSkip() {
 function getPath(_this) {
 	const relativePathPrefix = getRelativePathPrefix(_this);
 
-	return _this.opts.filePathLocationType === "relative"
-		? `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`
-		: getRealpath(_this.file.opts.filename);
+	return _this.opts.filePathLocationType === "absolute"
+		? getRealpath(_this.file.opts.filename)
+		: `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`;
 }
 
 function getRelativePathPrefix(_this) {
+	var relativePathPrefix =
+		_this.opts.relativePathPrefix || "store/${project_name}/${branch}/code";
 	var commit_hash = "";
 	var version = "";
 	var branch = "";
@@ -89,14 +91,14 @@ function getRelativePathPrefix(_this) {
 		console.log("get git info error", err);
 	}
 
-	const relativePathPrefix = _this.opts.relativePathPrefix
+	const _relativePathPrefix = relativePathPrefix
 		.replace(/\$\{commit_hash\}/g, commit_hash)
 		.replace(/\$\{version\}/g, version)
 		.replace(/\$\{branch\}/g, branch)
 		.replace(/\$\{last_commit_datetime\}/g, last_commit_datetime)
 		.replace(/\$\{remote\}/g, remote)
 		.replace(/\$\{project_name\}/g, project_name);
-	return relativePathPrefix;
+	return _relativePathPrefix;
 }
 
 function makeVisitor({ types: t }) {
