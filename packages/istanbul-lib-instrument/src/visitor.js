@@ -532,6 +532,7 @@ const coverageTemplate = template(`
             gcv = GLOBAL_COVERAGE_VAR,
             coverageData = INITIAL,
             coverage = global[gcv] || (global[gcv] = {});
+			global["coverageVariable"] = gcv;
         if (coverage[path] && coverage[path].hash === hash) {
             return coverage[path];
         }
