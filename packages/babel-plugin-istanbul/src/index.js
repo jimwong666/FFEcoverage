@@ -1,4 +1,5 @@
 import { realpathSync, relative } from "fs";
+const os = require("os");
 import { dirname, resolve } from "path";
 import { programVisitor } from "@jimwong/istanbul-lib-instrument";
 import babelSyntaxObjectRestSpread from "babel-plugin-syntax-object-rest-spread";
@@ -10,7 +11,12 @@ const findUp = require("find-up");
 
 function getRealpath(n) {
 	try {
-		return realpathSync(n).replace(/\\/g, "/") || n;
+		if (os.type() == "Windows_NT") {
+			//windows平台
+			return realpathSync(n) || n;
+		} else {
+			return realpathSync(n).replace(/\\/g, "/") || n;
+		}
 	} catch (e) {
 		return n;
 	}
@@ -19,7 +25,12 @@ function getRelativepath(n) {
 	try {
 		const cwd = getRealpath(process.env.NYC_CWD || process.cwd());
 		const arr = n.split(cwd);
-		return arr[1] || n;
+		if (os.type() == "Windows_NT") {
+			//windows平台
+			return arr[1].replace(/\\/g, "/") || n;
+		} else {
+			return arr[1] || n;
+		}
 	} catch (e) {
 		return n;
 	}
