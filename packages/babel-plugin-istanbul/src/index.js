@@ -8,15 +8,11 @@ const gitRevisionPlugin = new GitRevisionPlugin();
 
 const testExclude = require("test-exclude");
 const findUp = require("find-up");
+const isWindows = os.platform() === "win32";
 
 function getRealpath(n) {
 	try {
-		if (os.type() == "Windows_NT") {
-			//windows平台
-			return realpathSync(n).replace(/\\/g, "/") || n;
-		} else {
-			return realpathSync(n) || n;
-		}
+		return realpathSync(n) || n;
 	} catch (e) {
 		return n;
 	}
@@ -25,12 +21,7 @@ function getRelativepath(n) {
 	try {
 		const cwd = getRealpath(process.env.NYC_CWD || process.cwd());
 		const arr = n.split(cwd);
-		if (os.type() == "Windows_NT") {
-			//windows平台
-			return arr[1].replace(/\\/g, "/") || n;
-		} else {
-			return arr[1] || n;
-		}
+		return arr[1] || n;
 	} catch (e) {
 		return n;
 	}
@@ -75,8 +66,17 @@ function getPath(_this) {
 	const relativePathPrefix = getRelativePathPrefix(_this);
 
 	return _this.opts.filePathLocationType === "absolute"
-		? getRealpath(_this.file.opts.filename)
-		: `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`;
+		? isWindows
+			? getRealpath(_this.file.opts.filename).replace(/\\/g, "/")
+			: getRealpath(_this.file.opts.filename)
+		: `${relativePathPrefix}${
+				isWindows
+					? getRelativepath(_this.file.opts.filename).replace(
+							/\\/g,
+							"/",
+					  )
+					: getRelativepath(_this.file.opts.filename)
+		  }`;
 }
 
 function getRelativePathPrefix(_this) {
@@ -135,9 +135,13 @@ function makeVisitor({ types: t }) {
 					}
 
 					if (inputSourceMap) {
-						var pathArr = getRelativepath(
-							this.file.opts.filename,
-						).split("/");
+						const pathArr = isWindows
+							? getRelativepath(this.file.opts.filename).split(
+									"\\",
+							  )
+							: getRelativepath(this.file.opts.filename).split(
+									"/",
+							  );
 						// 变为相对路径
 						inputSourceMap.file = pathArr[pathArr.length - 1];
 						inputSourceMap.sources = [pathArr[pathArr.length - 1]];
