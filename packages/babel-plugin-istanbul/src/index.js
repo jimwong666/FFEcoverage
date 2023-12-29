@@ -13,9 +13,9 @@ function getRealpath(n) {
 	try {
 		if (os.type() == "Windows_NT") {
 			//windows平台
-			return realpathSync(n) || n;
-		} else {
 			return realpathSync(n).replace(/\\/g, "/") || n;
+		} else {
+			return realpathSync(n) || n;
 		}
 	} catch (e) {
 		return n;
@@ -132,6 +132,15 @@ function makeVisitor({ types: t }) {
 					if (this.opts.useInlineSourceMaps !== false) {
 						inputSourceMap =
 							inputSourceMap || this.file.opts.inputSourceMap;
+					}
+
+					if (inputSourceMap) {
+						var pathArr = getRelativepath(
+							this.file.opts.filename,
+						).split("/");
+						// 变为相对路径
+						inputSourceMap.file = pathArr[pathArr.length - 1];
+						inputSourceMap.sources = [pathArr[pathArr.length - 1]];
 					}
 
 					const filePath = getPath(this);
