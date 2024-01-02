@@ -4,3 +4,4 @@ cov-foo/
 json/
 lcovonly/
 *.orig
+yarn-error.log
