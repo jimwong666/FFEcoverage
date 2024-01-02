@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@jimwong/auto-report-coverage@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@jimwong/auto-report-coverage/-/auto-report-coverage-0.0.19.tgz#520678d3585f6ccf010814f423c3ad86dc772d9c"
+  integrity sha512-3TQt1bZ2W+qEtXKeBFqwI9c5SAXRItXlMhHGEYzcTibhQS6CcZ7Ev56pCrGGpdCvpi8lSRjkF6P1iczl+Jinog==
+
+"@jimwong/git-revision-webpack-plugin@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@jimwong/git-revision-webpack-plugin/-/git-revision-webpack-plugin-5.0.0.tgz#f48cff256caa0221ec7ce2cbdbdfa31016bf18c6"
+  integrity sha512-9vq2SAg7hwx5/st9CMqxSCvjFgCZOjl5sJBCqZ81uIj4UPd/TWgbHKIvl5ldJ+E+yP2zg0D62k/+XEWjNI7cwQ==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://r2.cnpmjs.org/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1919,9 +1929,9 @@ nodeunit@~0.9.0:
   dependencies:
     tap "^7.0.0"
 
-"nomnom@git+https://github.com/douglasduteil/nomnom#next":
+nomnom@douglasduteil/nomnom#next:
   version "1.8.1"
-  resolved "git+https://github.com/douglasduteil/nomnom#96ec52cb430e608a0eadc55c760eeb57dad9a1d8"
+  resolved "https://codeload.github.com/douglasduteil/nomnom/tar.gz/96ec52cb430e608a0eadc55c760eeb57dad9a1d8"
   dependencies:
     chalk "~0.4.0"
     underscore "~1.6.0"
