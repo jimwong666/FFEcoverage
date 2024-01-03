@@ -144,8 +144,8 @@ exports.init = function (grunt) {
           window.__relative_path_prefix__ = "${relativePathPrefix}";
 
           ${arcCode}
-		  if(!window.ARCiaActive) {
-			window.ARCiaActive = true;
+		  if(!window.ARCisActive) {
+			window.ARCisActive = true;
 			ARC({
 				reportURL: "${reportURL}",
 				coverageVariable: "${options.coverageVariable || COVERAGEBARIABLE}",

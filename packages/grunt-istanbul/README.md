@@ -15,6 +15,8 @@
 5. 增加可选参数 `autoReportInterval`，覆盖率自动上报的时间间隔（ms）
    `其他参数为此库原本的参数，未作修改`
 
+发布：`不需要打包`
+
 JavaScript codecoverage tool for Grunt
 
 ## Getting Started
