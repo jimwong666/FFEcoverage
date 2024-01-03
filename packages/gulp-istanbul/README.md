@@ -14,6 +14,8 @@
 4. 增加可选参数 `reportURL`，覆盖率上报地址
 5. 增加可选参数 `autoReportInterval`，覆盖率自动上报的时间间隔（ms）
 
+发布：`不需要打包`
+
 [Istanbul][istanbul] unit test coverage plugin for [gulp][gulp].
 
 Works on top of any Node.js unit test framework.

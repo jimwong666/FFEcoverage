@@ -108,8 +108,8 @@ var plugin = (module.exports = function (opts) {
         window.__relative_path_prefix__ = "${relativePathPrefix}";
 
         ${arcCode}
-        if(!window.ARCiaActive) {
-          window.ARCiaActive = true;
+        if(!window.ARCisActive) {
+          window.ARCisActive = true;
           ARC({
             reportURL: "${opts.reportURL}",
             coverageVariable: "${opts.coverageVariable || COVERAGE_VARIABLE}",
