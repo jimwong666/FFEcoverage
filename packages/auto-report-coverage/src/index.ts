@@ -29,19 +29,29 @@ const reportCoverage = (
 	failedCallback: () => void,
 	params: Record<string, any>,
 ) => {
+	const reportData = JSON.stringify({
+		data: global[coverageVariable],
+		increment_coverage_dir: global.__increment_coverage_dir__,
+		relative_path_prefix: global.__relative_path_prefix__,
+		...global.__git_info__,
+		...params,
+	});
+
+	// 超过 64k 时就不能使用 keepalive 了...
+	const fetchParams =
+		reportData.length > 65536
+			? {}
+			: {
+					keepalive: true,
+			  };
+
 	fetch(reportURL, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json;charset=utf-8",
 		},
-		keepalive: true,
-		body: JSON.stringify({
-			data: global[coverageVariable],
-			increment_coverage_dir: global.__increment_coverage_dir__,
-			relative_path_prefix: global.__relative_path_prefix__,
-			...global.__git_info__,
-			...params,
-		}),
+		body: reportData,
+		...fetchParams,
 	})
 		.then((res) => {
 			if (!res.ok) {
