@@ -34,6 +34,7 @@ const reportCoverage = (
 		headers: {
 			"Content-Type": "application/json;charset=utf-8",
 		},
+		keepalive: true,
 		body: JSON.stringify({
 			data: global[coverageVariable],
 			increment_coverage_dir: global.__increment_coverage_dir__,
@@ -51,8 +52,6 @@ const reportCoverage = (
 		.then((json) => {
 			const { success, message } = json;
 			if (success) {
-				console.log(message);
-
 				// 重置 coverage 统计数据
 				const cocerageData = global[coverageVariable] as any;
 				for (const i in cocerageData) {
@@ -92,24 +91,26 @@ const ARC = (props: ARCprops): void => {
 	} = props || {};
 
 	setInterval(() => {
-		reportCoverage(
-			reportURL,
-			coverageVariable,
-			successCallback,
-			failedCallback,
-			params,
-		);
+		(document.visibilityState === "visible" || !document.hidden) &&
+			reportCoverage(
+				reportURL,
+				coverageVariable,
+				successCallback,
+				failedCallback,
+				params,
+			);
 	}, interval);
 
 	// 2、页面关闭时上报
 	window.onbeforeunload = () => {
-		reportCoverage(
-			reportURL,
-			coverageVariable,
-			successCallback,
-			failedCallback,
-			params,
-		);
+		(document.visibilityState === "visible" || !document.hidden) &&
+			reportCoverage(
+				reportURL,
+				coverageVariable,
+				successCallback,
+				failedCallback,
+				params,
+			);
 	};
 };
 
