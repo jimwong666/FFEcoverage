@@ -1,6 +1,5 @@
-import { realpathSync, relative } from "fs";
-const os = require("os");
-import { dirname, resolve } from "path";
+import { realpathSync } from "fs";
+import { dirname, basename } from "path";
 import { programVisitor } from "@jimwong/istanbul-lib-instrument";
 import babelSyntaxObjectRestSpread from "babel-plugin-syntax-object-rest-spread";
 const { GitRevisionPlugin } = require("@jimwong/git-revision-webpack-plugin");
@@ -8,22 +7,24 @@ const gitRevisionPlugin = new GitRevisionPlugin();
 
 const testExclude = require("test-exclude");
 const findUp = require("find-up");
-const isWindows = os.platform() === "win32";
 
 function getRealpath(n) {
 	try {
-		return realpathSync(n) || n;
+		return (realpathSync(n) || n).replace(/\\/g, "/");
 	} catch (e) {
-		return n;
+		return n.replace(/\\/g, "/");
 	}
 }
 function getRelativepath(n) {
 	try {
-		const cwd = getRealpath(process.env.NYC_CWD || process.cwd());
-		const arr = n.split(cwd);
-		return arr[1] || n;
+		const cwd = getRealpath(process.env.NYC_CWD || process.cwd()).replace(
+			/\\/g,
+			"/",
+		);
+		const arr = n.replace(/\\/g, "/").split(cwd);
+		return arr[1] || n.replace(/\\/g, "/");
 	} catch (e) {
-		return n;
+		return n.replace(/\\/g, "/");
 	}
 }
 
@@ -66,17 +67,8 @@ function getPath(_this) {
 	const relativePathPrefix = getRelativePathPrefix(_this);
 
 	return _this.opts.filePathLocationType === "absolute"
-		? isWindows
-			? getRealpath(_this.file.opts.filename).replace(/\\/g, "/")
-			: getRealpath(_this.file.opts.filename)
-		: `${relativePathPrefix}${
-				isWindows
-					? getRelativepath(_this.file.opts.filename).replace(
-							/\\/g,
-							"/",
-					  )
-					: getRelativepath(_this.file.opts.filename)
-		  }`;
+		? getRealpath(_this.file.opts.filename)
+		: `${relativePathPrefix}${getRelativepath(_this.file.opts.filename)}`;
 }
 
 function getRelativePathPrefix(_this) {
@@ -135,16 +127,12 @@ function makeVisitor({ types: t }) {
 					}
 
 					if (inputSourceMap) {
-						const pathArr = isWindows
-							? getRelativepath(this.file.opts.filename).split(
-									"\\",
-							  )
-							: getRelativepath(this.file.opts.filename).split(
-									"/",
-							  );
+						const fileName = basename(
+							getRelativepath(this.file.opts.filename),
+						);
 						// 变为相对路径
-						inputSourceMap.file = pathArr[pathArr.length - 1];
-						inputSourceMap.sources = [pathArr[pathArr.length - 1]];
+						inputSourceMap.file = fileName;
+						inputSourceMap.sources = [fileName];
 					}
 
 					const filePath = getPath(this);
