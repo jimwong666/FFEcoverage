@@ -1,5 +1,5 @@
 import runGitCommand from './helpers/run-git-command'
-import { Compiler } from 'webpack'
+import { Compiler, Compilation } from 'webpack'
 
 interface BuildFileOptions {
   compiler: Compiler
@@ -12,8 +12,8 @@ interface BuildFileOptions {
 export default function buildFile({ compiler, gitWorkTree, command, replacePattern, asset }: BuildFileOptions) {
   let data: string = ''
 
-  compiler.hooks.compilation.tap('GitRevisionWebpackPlugin', compilation => {
-    compilation.hooks.optimizeTree.tapAsync('optimize-tree', (_, __, callback) => {
+  compiler.hooks.compilation.tap('GitRevisionWebpackPlugin', (compilation: Compilation) => {
+    compilation.hooks.optimizeTree.tapAsync('optimize-tree', (_: any, __: any, callback: any) => {
       runGitCommand(gitWorkTree, command, function(err, res) {
         if (err) {
           return callback(err)
@@ -31,7 +31,7 @@ export default function buildFile({ compiler, gitWorkTree, command, replacePatte
       return path.replace(replacePattern, data)
     })
 
-    compilation.hooks.processAssets.tap('GitRevisionWebpackPlugin', assets => {
+    compilation.hooks.processAssets.tap('GitRevisionWebpackPlugin', (assets: any) => {
       assets[asset] = {
         source: function() {
           return data
