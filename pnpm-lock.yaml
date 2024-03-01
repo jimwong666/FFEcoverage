@@ -54,10 +54,10 @@ importers:
   packages/babel-plugin-istanbul:
     dependencies:
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul-lib-instrument':
-        specifier: ^1.10.12
+        specifier: ^1.10.13
         version: link:../istanbul-lib-instrument
       babel-plugin-syntax-object-rest-spread:
         specifier: ^6.13.0
@@ -145,10 +145,10 @@ importers:
   packages/grunt-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.20
+        specifier: ^0.0.21
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../git-revision-webpack-plugin
       chalk:
         specifier: 1.1.1
@@ -188,10 +188,10 @@ importers:
   packages/gulp-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.20
+        specifier: ^0.0.21
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul':
         specifier: ^0.4.5
@@ -423,7 +423,7 @@ importers:
         specifier: ^0.1.2
         version: 0.1.3
       '@jimwong/istanbul-reports':
-        specifier: ^3.1.10
+        specifier: ^3.1.11
         version: link:../istanbul-reports
       caching-transform:
         specifier: ^4.0.0

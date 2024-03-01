@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/auto-report-coverage",
-	"version": "0.0.20",
+	"version": "0.0.21",
 	"description": "",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.esm.js",
@@ -40,12 +40,12 @@
 		"@babel/preset-env": "^7.22.20",
 		"@rollup/plugin-babel": "^6.0.3",
 		"@rollup/plugin-commonjs": "^25.0.4",
+		"@rollup/plugin-json": "^6.0.0",
 		"@rollup/plugin-node-resolve": "^15.2.1",
 		"rimraf": "^5.0.1",
 		"rollup": "^3.29.2",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-typescript2": "^0.35.0",
-		"typescript": "^5.2.2",
-		"@rollup/plugin-json": "^6.0.0"
+		"typescript": "^5.2.2"
 	}
 }
