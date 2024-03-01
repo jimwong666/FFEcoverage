@@ -1,9 +1,15 @@
 # FFEcoverage
 
-## 依赖安装
+## Getting Started
 
--   1、安装依赖 pnpm install
--   2、针对特定包安装依赖 pnpm add lodash --filter "./packages/\a-package"，针对所有包 pnpm add lodash --filter "./packages/\*"，针对外层根目录 pnpm add lodash（这里使用了 pnpm 的 workspace，就不能使用 lerna 的装包操作了）
+### 依赖安装
+
+-   1、安装所有包的依赖 pnpm install
+-   2、针对特定包安装依赖 pnpm add xxx --filter "package-a"
+
+## xx
+
+-   xx
 
 ## 项目待办
 
