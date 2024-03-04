@@ -38,9 +38,6 @@ importers:
       '@babel/preset-env':
         specifier: ^7.22.20
         version: 7.24.0(@babel/core@7.24.0)
-      '@babel/runtime':
-        specifier: ^7.24.0
-        version: 7.24.0
       '@rollup/plugin-babel':
         specifier: ^6.0.3
         version: 6.0.4(@babel/core@7.24.0)(rollup@3.29.4)
