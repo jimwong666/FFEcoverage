@@ -16,6 +16,7 @@ const name = "ARC";
 const config = {
 	// 入口文件，src/index.ts
 	input: "src/index.ts",
+	external: ["@babel/runtime/helpers/defineProperty"],
 	// 输出文件
 	output: [
 		// commonjs
@@ -36,6 +37,9 @@ const config = {
 			name,
 			file: pkg.umd,
 			format: "umd",
+			globals: {
+				"@babel/runtime/helpers/defineProperty": "_defineProperty",
+			},
 		},
 	],
 	plugins: [
