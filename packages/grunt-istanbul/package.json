@@ -24,7 +24,7 @@
 		"@jimwong/auto-report-coverage": "^0.0.22",
 		"@jimwong/git-revision-webpack-plugin": "^5.0.2",
 		"chalk": "1.1.1",
-		"istanbul": "~0.4.2",
+		"@jimwong/istanbul": "^0.4.6",
 		"nue": "0.7.1"
 	},
 	"peerDependencies": {
