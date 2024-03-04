@@ -148,7 +148,7 @@ importers:
   packages/grunt-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.21
+        specifier: ^0.0.22
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
         specifier: ^5.0.2
@@ -191,7 +191,7 @@ importers:
   packages/gulp-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.21
+        specifier: ^0.0.22
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
         specifier: ^5.0.2
