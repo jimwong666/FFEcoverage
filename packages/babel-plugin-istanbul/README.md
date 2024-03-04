@@ -13,9 +13,3 @@
 3. 增加可选路径数组参数 `needInjectGitInfoJsPathArr`，表示对此数组中路径的 js 文件进行注入 git 信息，默认值是 `['']`（表示所有文件都会注入，不建议这样，会增加项目体积）， git 信息数据存放在 `window.__git_info__` 上，包含 `branch`、`commit`、`remote` 等信息
 4. 增加可选参数 `incrementCoverageDir`，表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
 5. 增加可选参数 `coverageVariable`，表示覆盖率数据在全局对象下面的变量名，默认是 `__coverage__`
-
-## Getting Started
-
--   安装依赖
--   打包生成产物 npm run release
--   发布
