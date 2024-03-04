@@ -1,9 +1,11 @@
 {
 	"name": "ffe-coverage",
 	"private": true,
+	"version": "0.0.2",
 	"scripts": {
 		"pi": "pnpm install",
-		"commit": "git cz"
+		"commit": "git cz",
+		"release": "standard-version"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.3",
@@ -11,7 +13,8 @@
 		"commitizen": "^4.3.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"husky": "^9.0.11",
-		"lerna": "^8.1.2"
+		"lerna": "^8.1.2",
+		"standard-version": "^9.5.0"
 	},
 	"config": {
 		"commitizen": {
