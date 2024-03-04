@@ -14,9 +14,6 @@
 	"license": "MIT",
 	"main": "Gruntfile.js",
 	"bin": "bin/grunt-istanbul",
-	"engines": {
-		"node": "~0.12.0"
-	},
 	"scripts": {
 		"test": "grunt test"
 	},
