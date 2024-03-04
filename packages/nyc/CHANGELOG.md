@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 15.6.0 (2024-03-04)
+
+
+### Features
+
+* 0.0.11 增加上报字段 ([ed8e928](https://github.com/jimwong666/istanbul-reports/commit/ed8e928382f1b477a9e994065db555d7583195fe))
+* 0.0.12 修改上报字段名 ([ae94a6c](https://github.com/jimwong666/istanbul-reports/commit/ae94a6c338cc6d4866ed762153c10a174ed8e095))
+* 0.0.13 增加relative_path_prefix参数 ([7a09440](https://github.com/jimwong666/istanbul-reports/commit/7a09440d2d2b04047a80664ace918a6a25163d5a))
+* 0.0.8 修复https使用http请求报错文通 ([14b4c97](https://github.com/jimwong666/istanbul-reports/commit/14b4c97042f6cbc6d5aff7712f28ddae3939e0c3))
+* 1.10.12 注入coverageVariable ([20bf9df](https://github.com/jimwong666/istanbul-reports/commit/20bf9df6a562fb5ba0f8901e55b441de568247c7))
+* 1.10.2 ([7a4d74e](https://github.com/jimwong666/istanbul-reports/commit/7a4d74e65ba4176bbf61866eba12ba01aaede53c))
+* 1.10.3 ([e785664](https://github.com/jimwong666/istanbul-reports/commit/e78566429d1b9e832d184cab2013015a48a2c751))
+* 1.10.4 ([35d416d](https://github.com/jimwong666/istanbul-reports/commit/35d416d344aae8061bc707145500f57c5f1edf8d))
+* 1.10.5 ([4404f31](https://github.com/jimwong666/istanbul-reports/commit/4404f3192da528085b025efa8230da71096b3df8))
+* 1.10.6，获取git信息代码改为全量插入 ([d2ef8c5](https://github.com/jimwong666/istanbul-reports/commit/d2ef8c53afcb6debd5cdc4210ae230a15d60da4d))
+* 1.10.7，增加可选路径数组参数（实现上报的js相对路径） ([384c05e](https://github.com/jimwong666/istanbul-reports/commit/384c05ec8d75997b2835928d6d8b988c95b2f27c))
+* 4.1.11 ([239cd58](https://github.com/jimwong666/istanbul-reports/commit/239cd5830caa746f814e3df54923a98159b067b7))
+* 4.1.11 ([6a7669a](https://github.com/jimwong666/istanbul-reports/commit/6a7669a46115aed986c01d44ff05605f667be89d))
+* 4.1.12 ([a504445](https://github.com/jimwong666/istanbul-reports/commit/a504445efa92340244f59ecbcb386e8c761c1835))
+* 4.1.14 ([ab08a49](https://github.com/jimwong666/istanbul-reports/commit/ab08a496c7743e83e4efaa322d774361e046b96e))
+* 4.1.15 路径问题修复 ([e51f97c](https://github.com/jimwong666/istanbul-reports/commit/e51f97c24bb5a2efb5de6e88a156b77012783656))
+* 4.1.16 文档完善；参数命名更改；依赖更新（git信息全局插入）； ([f48acc8](https://github.com/jimwong666/istanbul-reports/commit/f48acc8f3530d27fc6269714bd7b10dffa4ddbbb))
+* 4.1.17 增加可选路径数组参数（实现上报的js相对路径） ([1d387b2](https://github.com/jimwong666/istanbul-reports/commit/1d387b26212ea4c2a30abc5e04f63bd66e13f99a))
+* 4.1.18 依赖更新 ([41f3375](https://github.com/jimwong666/istanbul-reports/commit/41f3375828cdf94a45d6d4677faf811d330f1e8e))
+* 4.1.19 更新依赖；增加参数incrementCoverageDir；修改参数名称 ([42142fe](https://github.com/jimwong666/istanbul-reports/commit/42142fe857ec570f28bea19520e9bc9aee38eb1e))
+* 4.1.20 更新依赖； ([31ac1c5](https://github.com/jimwong666/istanbul-reports/commit/31ac1c56c8aa4edf2de8fdbadfc49b468adcc5d3))
+* 4.1.20 更新依赖；增加relative_path_prefix参数 ([48ae0c5](https://github.com/jimwong666/istanbul-reports/commit/48ae0c52d9714e745ffb6b1addfb2713c90e8084))
+* 4.1.23 优化 ([a1f5268](https://github.com/jimwong666/istanbul-reports/commit/a1f52683ab92bfdb8786e33d7562a63e1a2c5ff3))
+* 4.1.24 问题修复 ([66b1f26](https://github.com/jimwong666/istanbul-reports/commit/66b1f268dcbab59df7ec9a30feca068af4b867ac))
+* 4.1.25 参数精简 ([5611cb2](https://github.com/jimwong666/istanbul-reports/commit/5611cb27c618040f3a91109f581d399b04cbc447))
+* 4.1.25 参数取值更新 ([b48c63d](https://github.com/jimwong666/istanbul-reports/commit/b48c63d81ed32cde724c1f962247a501c8c36672))
+* 4.1.27 各系统路径兼容问题修复 ([3a06822](https://github.com/jimwong666/istanbul-reports/commit/3a068221b2e5eb3c805ba6a160219d78387912e8))
+* 4.1.28 问题修复；ts sourcemap数据兼容 ([f69c5a8](https://github.com/jimwong666/istanbul-reports/commit/f69c5a848d6189297832a397685389144858f217))
+* 4.1.29 问题修复；ts sourcemap数据兼容 ([d8f4054](https://github.com/jimwong666/istanbul-reports/commit/d8f4054367e5782e1815512eb5e00563a6207474))
+* 变更 umd 全局变量名 ([550e7fe](https://github.com/jimwong666/istanbul-reports/commit/550e7fee9219b9a96aa97d9014f32736f7355c65))
+* 参数名修改 ([c934ffb](https://github.com/jimwong666/istanbul-reports/commit/c934ffb7609de2a36ea5782a16070ef8608e19ce))
+* 更新参数和文档 ([37560f9](https://github.com/jimwong666/istanbul-reports/commit/37560f9329b895c1f0a8b91b1810feff8d79c0a5))
+* 更新依赖 ([7bedf1e](https://github.com/jimwong666/istanbul-reports/commit/7bedf1e3a51a929caeca11c92f3f394b6eb588fd))
+* 更新依赖 ([9e6e666](https://github.com/jimwong666/istanbul-reports/commit/9e6e6661948514d1a709a1ad68a132471a17c75a))
+* 更新依赖，其他优化 ([4da3b25](https://github.com/jimwong666/istanbul-reports/commit/4da3b252089596b484b1434844ff72bdb166c9b5))
+* 更新依赖，其他优化 ([6afd1b1](https://github.com/jimwong666/istanbul-reports/commit/6afd1b1fb276cdf34c9b52b4184d97e412e9bb3f))
+* 更新依赖，其他优化 ([c2f7db2](https://github.com/jimwong666/istanbul-reports/commit/c2f7db2e27b6777782ae6b9cfa6ed5d1a3c6a423))
+* 删除dist ([282ae32](https://github.com/jimwong666/istanbul-reports/commit/282ae32b1ced5c1551efdda5b5f97bdb0f6d583c))
+* 上报请求持久优化 ([2d2c607](https://github.com/jimwong666/istanbul-reports/commit/2d2c60774d82ae21b27e7bd8cfcb979156fa0f37))
+* 上报请求逻辑修正和优化 ([94e8472](https://github.com/jimwong666/istanbul-reports/commit/94e84726de2da5fc433d8ef865e7084464b1456d))
+* 问题修复 ([8f89167](https://github.com/jimwong666/istanbul-reports/commit/8f891679aca76ad12c48397194c79b7ab0fc97be))
+* 依赖更新 ([cb6b190](https://github.com/jimwong666/istanbul-reports/commit/cb6b19032441848821988f2ad234cd115bafddd1))
+* 依赖更新 ([2466ace](https://github.com/jimwong666/istanbul-reports/commit/2466ace04c823cebd357b62bbf39479ddd07ad39))
+* 增加上报方法的参数 ([4ea3689](https://github.com/jimwong666/istanbul-reports/commit/4ea3689f472b4e62cecdcb0fb9a86f5e64a1dd09))
+* 自动上报库单例运行 ([b99cb91](https://github.com/jimwong666/istanbul-reports/commit/b99cb9107683b33b7d3cd5e8f3ebf23841a9102f))
+* 自动上报库单例运行 ([0b46f37](https://github.com/jimwong666/istanbul-reports/commit/0b46f37f515c22f2315dd2250c3946f29d0487a3))
+* istanbul-reports 库更新 ([2288f59](https://github.com/jimwong666/istanbul-reports/commit/2288f5929d1a436189b4634c72d6bf2d98072534))
+* istanbul-reports 库更新 ([dfd2ef9](https://github.com/jimwong666/istanbul-reports/commit/dfd2ef963193532ab0b91defe2746b86ba4e8d16))
+* update dependencies and rollup config ([1b083df](https://github.com/jimwong666/istanbul-reports/commit/1b083dff64d1ad90e2fde04f2db3a9196a7dfd35))
+
+
+### Bug Fixes
+
+* 1.10.，增加参数incrementCoverageDir；修改参数名称 ([91b6591](https://github.com/jimwong666/istanbul-reports/commit/91b65911195675e017e42ad0bb2692b6303df40a))
+* 1.10.10，问题修复 ([46f777e](https://github.com/jimwong666/istanbul-reports/commit/46f777e3f126b9f8ae2d5b0f0840458f48da87b1))
+* 1.10.11 增加relative_path_prefix参数 ([2cd9f2f](https://github.com/jimwong666/istanbul-reports/commit/2cd9f2f5bc7062a407f92fe0cfd760b9bbdf1302))
+* 1.10.8，问题修复 ([6429e7f](https://github.com/jimwong666/istanbul-reports/commit/6429e7f632696c93aa69615099a687408b7be4fb))
+* 4.1.31 修复某些情况下全局覆盖率key的路径错误 ([7bbe834](https://github.com/jimwong666/istanbul-reports/commit/7bbe834aa50d9f977ceced75563031a62c7faeed))
+* 报告视觉标记更改 ([aae467f](https://github.com/jimwong666/istanbul-reports/commit/aae467fee754cd025d3f22f2a75c4316bea83ac3))
+* 报告视觉标记更改 ([ecd8257](https://github.com/jimwong666/istanbul-reports/commit/ecd8257a7eb62f326b597d01fbbac248ae9b2c92))
+* 判断条件bug修复；填充html修改 ([bf55aab](https://github.com/jimwong666/istanbul-reports/commit/bf55aaba4c554d42ef7b3d3cb216c810b117132b))
+* 问题修复 ([87fe8db](https://github.com/jimwong666/istanbul-reports/commit/87fe8db86be571925fe2a0606aa857ee1b58651f))
+* bug 修复 ([c13bf8c](https://github.com/jimwong666/istanbul-reports/commit/c13bf8cfee37a306d4044547169163ccd4ef783d))
+* bug 修复 ([285dbbf](https://github.com/jimwong666/istanbul-reports/commit/285dbbfdcd6bad89c7449f1655f04738290309de))
+* bug修复 ([d622a40](https://github.com/jimwong666/istanbul-reports/commit/d622a403d3720e5d08fcfb7fef4618ad8605da0f))
+
 ## [15.5.0](https://github.com/jimwong666/istanbul-reports/compare/v15.4.1...v15.5.0) (2023-11-06)
 
 
