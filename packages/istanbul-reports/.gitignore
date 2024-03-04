@@ -1,2 +1,3 @@
 lib/html-spa/assets/bundle.js
 /node_modules
+/.nyc_output
