@@ -1,8 +1,24 @@
 {
 	"name": "ffe-coverage",
 	"private": true,
-	"dependencies": {},
 	"devDependencies": {
+		"install": "pnpm install",
+		"commit": "git cz",
+		"@commitlint/cli": "^19.0.3",
+		"@commitlint/config-conventional": "^19.0.3",
+		"commitizen": "^4.3.0",
+		"cz-lerna-changelog": "^2.0.3",
+		"husky": "^9.0.11",
 		"lerna": "^8.1.2"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-lerna-changelog"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
 	}
 }
