@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/jimwong666/FFEcoverage/compare/v0.0.2...v0.0.3) (2024-03-05)
+
+
+### Features
+
+* **all:** new changelog feature ([f1db8ca](https://github.com/jimwong666/FFEcoverage/commit/f1db8caf146c0e72b1be132f35e50517772a88cc))
+
+
+### Bug Fixes
+
+* **auto-report-coverage:** fix dependencies warning ([4aa8a58](https://github.com/jimwong666/FFEcoverage/commit/4aa8a5833aae991135665aeefc619b496e6e2231))
+
 ### [0.0.2](https://github.com/jimwong666/FFEcoverage/compare/v15.6.0...v0.0.2) (2024-03-04)
 
 

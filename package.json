@@ -1,12 +1,16 @@
 {
 	"name": "ffe-coverage",
 	"private": true,
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"scripts": {
 		"pi": "pnpm install",
 		"commit": "git cz",
 		"release": "standard-version",
-		"publish": "lerna publish"
+		"publish": "lerna publish",
+		"build:arc": "pnpm --filter auto-report-coverage build",
+		"build:bpi": "pnpm --filter babel-plugin-istanbul release",
+		"build:grwp": "pnpm --filter git-revision-webpack-plugin build",
+		"build:ili": "pnpm --filter istanbul-lib-instrument release"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.3",
