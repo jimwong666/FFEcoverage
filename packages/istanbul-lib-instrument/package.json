@@ -42,12 +42,13 @@
 	},
 	"license": "BSD-3-Clause",
 	"bugs": {
-		"url": "https://github.com/jimwong666/istanbul-lib-instrument/issues"
+		"url": "https://github.com/jimwong666/FFEcoverage/issues"
 	},
-	"homepage": "https://github.com/jimwong666/istanbul-lib-instrument",
+	"homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/istanbul-lib-instrument#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jimwong666/istanbul-lib-instrument.git"
+		"url": "git+https://github.com/jimwong666/FFEcoverage.git",
+		"directory": "packages/istanbul-lib-instrument"
 	},
 	"keywords": [
 		"coverage",

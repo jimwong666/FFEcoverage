@@ -2,15 +2,16 @@
 	"name": "@jimwong/grunt-istanbul",
 	"description": "JavaScript codecoverage tool for Grunt",
 	"version": "0.8.10",
-	"homepage": "https://github.com/jimwong666/grunt-istanbul",
 	"author": "jim wong",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/jimwong666/grunt-istanbul.git"
+		"url": "git+https://github.com/jimwong666/FFEcoverage.git",
+		"directory": "packages/grunt-istanbul"
 	},
 	"bugs": {
-		"url": "https://github.com/jimwong666/grunt-istanbul/issues"
+		"url": "https://github.com/jimwong666/FFEcoverage/issues"
 	},
+	"homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/grunt-istanbul#readme",
 	"license": "MIT",
 	"main": "Gruntfile.js",
 	"bin": "bin/grunt-istanbul",

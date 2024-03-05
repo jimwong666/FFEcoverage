@@ -84,10 +84,13 @@
   "engines": {
     "node": ">=8.9"
   },
-  "homepage": "https://istanbul.js.org/",
-  "bugs": "https://github.com/jimwong666/istanbul-reports/issues",
+  "bugs": {
+    "url": "https://github.com/jimwong666/FFEcoverage/issues"
+  },
+  "homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/nyc#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com/jimwong666/istanbul-reports.git"
+    "url": "git+https://github.com/jimwong666/FFEcoverage.git",
+    "directory": "packages/nyc"
   }
 }

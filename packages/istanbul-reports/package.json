@@ -38,7 +38,7 @@
 	"license": "BSD-3-Clause",
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://github.com/jimwong666/istanbul-reports.git",
+		"url": "git+https://github.com/jimwong666/FFEcoverage.git",
 		"directory": "packages/istanbul-reports"
 	},
 	"keywords": [
@@ -46,9 +46,9 @@
 		"reports"
 	],
 	"bugs": {
-		"url": "https://github.com/jimwong666/istanbul-reports/issues"
+		"url": "https://github.com/jimwong666/FFEcoverage/issues"
 	},
-	"homepage": "https://istanbul.js.org/",
+	"homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/istanbul-reports#readme",
 	"nyc": {
 		"exclude": [
 			"lib/html/assets/**",

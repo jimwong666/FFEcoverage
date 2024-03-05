@@ -1,5 +1,7 @@
 {
+  "name": "@jimwong/git-revision-webpack-plugin",
   "version": "5.0.2",
+  "author": "jim wong",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -9,7 +11,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jimwong666/git-revision-webpack-plugin.git"
+    "url": "git+https://github.com/jimwong666/FFEcoverage.git",
+    "directory": "packages/git-revision-webpack-plugin"
   },
   "engines": {
     "node": ">=10"
@@ -32,12 +35,10 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "name": "@jimwong/git-revision-webpack-plugin",
-  "author": "jim wong",
   "bugs": {
-    "url": "https://github.com/jimwong666/git-revision-webpack-plugin/issues"
+    "url": "https://github.com/jimwong666/FFEcoverage/issues"
   },
-  "homepage": "https://github.com/jimwong666/git-revision-webpack-plugin",
+  "homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/git-revision-webpack-plugin#readme",
   "module": "dist/git-revision-webpack-plugin.esm.js",
   "size-limit": [
     {

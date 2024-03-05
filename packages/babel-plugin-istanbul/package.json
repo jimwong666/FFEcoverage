@@ -46,7 +46,8 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jimwong666/babel-plugin-istanbul.git"
+		"url": "git+https://github.com/jimwong666/FFEcoverage.git",
+		"directory": "packages/babel-plugin-istanbul"
 	},
 	"keywords": [
 		"istanbul",
@@ -66,9 +67,9 @@
 		"instrument": false
 	},
 	"bugs": {
-		"url": "https://github.com/jimwong666/babel-plugin-istanbul/issues"
+		"url": "https://github.com/jimwong666/FFEcoverage/issues"
 	},
-	"homepage": "https://github.com/jimwong666/babel-plugin-istanbul#readme",
+	"homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/babel-plugin-istanbul#readme",
 	"greenkeeper": {
 		"ignore": [
 			"find-up",

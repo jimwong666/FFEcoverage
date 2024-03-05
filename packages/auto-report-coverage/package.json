@@ -21,7 +21,8 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jimwong666/auto-report-coverage.git"
+		"url": "git+https://github.com/jimwong666/FFEcoverage.git",
+		"directory": "packages/auto-report-coverage"
 	},
 	"keywords": [
 		"istanbul",
@@ -30,9 +31,9 @@
 	"author": "jim wong",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/jimwong666/auto-report-coverage/issues"
+		"url": "https://github.com/jimwong666/FFEcoverage/issues"
 	},
-	"homepage": "https://github.com/jimwong666/auto-report-coverage#readme",
+	"homepage": "https://github.com/jimwong666/FFEcoverage/tree/main/packages/auto-report-coverage#readme",
 	"type": "module",
 	"devDependencies": {
 		"@babel/core": "^7.22.20",
