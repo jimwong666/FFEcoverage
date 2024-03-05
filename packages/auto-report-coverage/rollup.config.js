@@ -4,7 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import rollupTypescript from "rollup-plugin-typescript2";
 import babel from "@rollup/plugin-babel";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import json from "@rollup/plugin-json";
 
 const pkg = JSON.parse(
