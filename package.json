@@ -5,7 +5,8 @@
 	"scripts": {
 		"pi": "pnpm install",
 		"commit": "git cz",
-		"release": "standard-version"
+		"release": "standard-version",
+		"publish": "lerna publish"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.3",
