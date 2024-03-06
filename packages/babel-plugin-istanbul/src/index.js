@@ -168,7 +168,7 @@ function initParams(_this) {
 			_this.opts.reportURL ||
 			"https://www.please.config.your.reporturl.com";
 	} catch (err) {
-		console.log("get git info error", err);
+		console.log("GET SOME DATA ERROR: ", err);
 	}
 }
 
