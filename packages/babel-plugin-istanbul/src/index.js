@@ -219,11 +219,11 @@ var timer = setInterval(function() {
 	} else {
 		if (waitingTimes > params.maxWaitingTimes) {
 			// 总计等待大于 N 次就取消定时器
-			console.log(`覆盖率源数据上报中...`);
+			console.log(`覆盖率源数据上报完成！`);
 			clearInterval(timer);
 		} else {
 			waitingTimes++;
-			console.log(`覆盖率源数据上报完成！`);
+			console.log(`覆盖率源数据上报中...`);
 		}
 	}
 }, 10000);
