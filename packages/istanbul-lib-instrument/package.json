@@ -27,7 +27,6 @@
 	},
 	"devDependencies": {
 		"babel-cli": "^6.3.17",
-		"@jimwong/babel-plugin-istanbul": "^4.2.0",
 		"babel-preset-env": "^1.6.1",
 		"babel-register": "^6.16.3",
 		"chai": "^3.0.0",
