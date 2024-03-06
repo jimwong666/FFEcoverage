@@ -122,6 +122,7 @@ function makeShouldSkip() {
 	};
 }
 
+// params 是所有需要的参数
 var params = {};
 function initParams(_this) {
 	try {
@@ -137,11 +138,11 @@ function initParams(_this) {
 		params.last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
 		// 项目git地址
 		params.remote = gitRevisionPlugin.remote() || "";
-		if (remote.endsWith("/")) {
-			remote = remote.slice(0, -1);
+		if (params.remote.endsWith("/")) {
+			params.remote = params.remote.slice(0, -1);
 		}
 		// 根据 remote 获取 git repo 名
-		const remoteArr = remote.split("/");
+		const remoteArr = params.remote.split("/");
 		// 项目名称
 		params.project_name =
 			remoteArr[remoteArr.length - 1].split(".")[0] || "";
@@ -152,12 +153,15 @@ function initParams(_this) {
 		// 相对路径时，真实的路径前缀
 		params.relativePathPrefix =
 			params.relativePathPrefixTemp
-				.replace(/\$\{commit_hash\}/g, commit_hash)
-				.replace(/\$\{version\}/g, version)
-				.replace(/\$\{branch\}/g, branch)
-				.replace(/\$\{last_commit_datetime\}/g, last_commit_datetime)
-				.replace(/\$\{remote\}/g, remote)
-				.replace(/\$\{project_name\}/g, project_name) || "";
+				.replace(/\$\{commit_hash\}/g, params.commit_hash)
+				.replace(/\$\{version\}/g, params.version)
+				.replace(/\$\{branch\}/g, params.branch)
+				.replace(
+					/\$\{last_commit_datetime\}/g,
+					params.last_commit_datetime,
+				)
+				.replace(/\$\{remote\}/g, params.remote)
+				.replace(/\$\{project_name\}/g, params.project_name) || "";
 
 		params.maxWaitingTimes = _this.opts.maxWaitingTimes || 6;
 		params.reportURL =
@@ -189,35 +193,7 @@ var timer = setInterval(function() {
 	if (Object.keys(coverage).length > 0 || Object.keys(_coverage).length > 0) {
 		_coverage = Object.assign({}, _coverage, coverage);
 		coverage = {};
-		// _fs.readFile(
-		// 	_path.join(process.cwd(), "data.json"),
-		// 	"utf-8",
-		// 	(readERR, file_data) => {
-		// 		if (readERR) {
-		// 			console.log("读取失败 ", readERR);
-		// 			return _fs.writeFile(
-		// 				_path.join(process.cwd(), "data.json"),
-		// 				JSON.stringify(_coverage),
-		// 				(writeERR) => {
-		// 					console.log("初始化写入出错 ", writeERR);
-		// 				},
-		// 			);
-		// 		}
-		// 		var newData = Object.assign(
-		// 			{},
-		// 			JSON.parse(file_data),
-		// 			_coverage,
-		// 		);
-		// 		_fs.writeFile(
-		// 			_path.join(process.cwd(), "data.json"),
-		// 			JSON.stringify(newData),
-		// 			(writeERR) => {
-		// 				console.log("更新出错 ", writeERR);
-		// 			},
-		// 		);
-		// 	},
-		// );
-
+		// 上报覆盖率源数据
 		httpRequest(
 			params.reportURL,
 			{
@@ -247,7 +223,7 @@ var timer = setInterval(function() {
 			clearInterval(timer);
 		} else {
 			waitingTimes++;
-			console.log(`覆盖率源数据上报中...`);
+			console.log(`覆盖率源数据上报完成！`);
 		}
 	}
 }, 10000);
@@ -260,7 +236,7 @@ function makeVisitor({ types: t }) {
 			Program: {
 				enter(path) {
 					// 初始化参数
-					if (Object.keys(opts).length) {
+					if (Object.keys(params).length === 0) {
 						initParams(this);
 					}
 
