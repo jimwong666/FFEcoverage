@@ -1,7 +1,7 @@
 {
 	"name": "@jimwong/grunt-istanbul",
 	"description": "JavaScript codecoverage tool for Grunt",
-	"version": "0.8.10",
+	"version": "0.9.0",
 	"author": "jim wong",
 	"repository": {
 		"type": "git",
@@ -22,10 +22,10 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@jimwong/auto-report-coverage": "^0.0.22",
-		"@jimwong/git-revision-webpack-plugin": "^5.0.2",
+		"@jimwong/auto-report-coverage": "^0.0.23",
+		"@jimwong/git-revision-webpack-plugin": "^5.0.3",
+		"@jimwong/istanbul": "^0.4.7",
 		"chalk": "1.1.1",
-		"@jimwong/istanbul": "^0.4.6",
 		"nue": "0.7.1"
 	},
 	"peerDependencies": {

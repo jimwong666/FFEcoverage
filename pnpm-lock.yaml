@@ -75,10 +75,10 @@ importers:
   packages/babel-plugin-istanbul:
     dependencies:
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.2
+        specifier: ^5.0.3
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul-lib-instrument':
-        specifier: ^1.10.13
+        specifier: ^1.11.0
         version: link:../istanbul-lib-instrument
       babel-plugin-syntax-object-rest-spread:
         specifier: ^6.13.0
@@ -91,7 +91,7 @@ importers:
         version: 4.2.3
     devDependencies:
       '@jimwong/nyc':
-        specifier: ^15.6.0
+        specifier: ^15.7.0
         version: link:../nyc
       babel-cli:
         specifier: ^6.18.0
@@ -166,13 +166,13 @@ importers:
   packages/grunt-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.22
+        specifier: ^0.0.23
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.2
+        specifier: ^5.0.3
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul':
-        specifier: ^0.4.6
+        specifier: ^0.4.7
         version: link:../istanbul
       chalk:
         specifier: 1.1.1
@@ -209,13 +209,13 @@ importers:
   packages/gulp-istanbul:
     dependencies:
       '@jimwong/auto-report-coverage':
-        specifier: ^0.0.22
+        specifier: ^0.0.23
         version: link:../auto-report-coverage
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.2
+        specifier: ^5.0.3
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul':
-        specifier: ^0.4.5
+        specifier: ^0.4.7
         version: link:../istanbul
       istanbul-threshold-checker:
         specifier: ^0.2.1
@@ -322,7 +322,7 @@ importers:
   packages/istanbul-lib-instrument:
     dependencies:
       '@jimwong/git-revision-webpack-plugin':
-        specifier: ^5.0.0
+        specifier: ^5.0.3
         version: link:../git-revision-webpack-plugin
       babel-generator:
         specifier: ^6.18.0
@@ -438,10 +438,10 @@ importers:
         specifier: ^0.1.2
         version: 0.1.3
       '@jimwong/istanbul-lib-instrument':
-        specifier: ^1.10.13
+        specifier: ^1.11.0
         version: link:../istanbul-lib-instrument
       '@jimwong/istanbul-reports':
-        specifier: ^3.1.11
+        specifier: ^3.2.0
         version: link:../istanbul-reports
       caching-transform:
         specifier: ^4.0.0
@@ -3924,7 +3924,7 @@ packages:
   /anymatch@2.0.0:
     resolution: {integrity: sha512-5teOsQWABXHHBFP9y3skS5P3d/WfWXpv3FUpy+LorMrNYaT9pI4oLMQX7jzQ2KklNpGpWHzdCXTDT2Y3XGlZBw==, tarball: https://r2.cnpmjs.org/anymatch/-/anymatch-2.0.0.tgz}
     dependencies:
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       normalize-path: 2.1.1
     transitivePeerDependencies:
       - supports-color
@@ -4372,7 +4372,7 @@ packages:
       commander: 2.20.3
       convert-source-map: 0.5.1
       core-js: 0.6.1
-      debug: 2.6.9(supports-color@3.2.3)
+      debug: 2.6.9(supports-color@6.1.0)
       detect-indent: 3.0.1
       estraverse: 1.9.3
       esutils: 1.1.6
@@ -4413,7 +4413,7 @@ packages:
       babel-types: 6.26.0
       babylon: 6.18.0
       convert-source-map: 1.9.0
-      debug: 2.6.9(supports-color@3.2.3)
+      debug: 2.6.9(supports-color@6.1.0)
       json5: 0.5.1
       lodash: 4.17.21
       minimatch: 3.1.2
@@ -5360,7 +5360,7 @@ packages:
       babel-runtime: 6.26.0
       babel-types: 6.26.0
       babylon: 6.18.0
-      debug: 2.6.9(supports-color@3.2.3)
+      debug: 2.6.9(supports-color@6.1.0)
       globals: 9.18.0
       invariant: 2.2.4
       lodash: 4.17.21
@@ -5447,7 +5447,7 @@ packages:
     dev: true
 
   /bindings@1.5.0:
-    resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==, tarball: https://r2.cnpmjs.org/bindings/-/bindings-1.5.0.tgz}
+    resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
     requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
@@ -5514,24 +5514,6 @@ packages:
       expand-range: 1.8.2
       preserve: 0.2.0
       repeat-element: 1.1.4
-
-  /braces@2.3.2:
-    resolution: {integrity: sha512-aNdbnj9P8PjdXU4ybaWLK2IF3jc/EoDYbC7AazW6to3TRsfXxscC9UXOB5iDiEQrkyIbWp2SLQda4+QAa7nc3w==, tarball: https://r2.cnpmjs.org/braces/-/braces-2.3.2.tgz}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      arr-flatten: 1.1.0
-      array-unique: 0.3.2
-      extend-shallow: 2.0.1
-      fill-range: 4.0.0
-      isobject: 3.0.1
-      repeat-element: 1.1.4
-      snapdragon: 0.8.2
-      snapdragon-node: 2.1.1
-      split-string: 3.1.0
-      to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /braces@2.3.2(supports-color@6.1.0):
     resolution: {integrity: sha512-aNdbnj9P8PjdXU4ybaWLK2IF3jc/EoDYbC7AazW6to3TRsfXxscC9UXOB5iDiEQrkyIbWp2SLQda4+QAa7nc3w==, tarball: https://r2.cnpmjs.org/braces/-/braces-2.3.2.tgz}
@@ -6050,7 +6032,7 @@ packages:
     dev: true
 
   /chokidar@1.7.0:
-    resolution: {integrity: sha512-mk8fAWcRUOxY7btlLtitj3A45jOwSAxH4tOFOoEGbVsl6cL6pPMWUy7dwZ/canfj3QEdP6FHSnf/l1c6/WkzVg==, tarball: https://r2.cnpmjs.org/chokidar/-/chokidar-1.7.0.tgz}
+    resolution: {integrity: sha512-mk8fAWcRUOxY7btlLtitj3A45jOwSAxH4tOFOoEGbVsl6cL6pPMWUy7dwZ/canfj3QEdP6FHSnf/l1c6/WkzVg==}
     deprecated: Chokidar 2 will break on node v14+. Upgrade to chokidar 3 with 15x less dependencies.
     dependencies:
       anymatch: 1.3.2
@@ -6074,7 +6056,7 @@ packages:
     dependencies:
       anymatch: 2.0.0
       async-each: 1.0.6
-      braces: 2.3.2
+      braces: 2.3.2(supports-color@6.1.0)
       glob-parent: 3.1.0
       inherits: 2.0.4
       is-binary-path: 1.0.1
@@ -7469,6 +7451,7 @@ packages:
     dependencies:
       ms: 2.0.0
       supports-color: 3.2.3
+    dev: true
 
   /debug@2.6.9(supports-color@6.1.0):
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -7480,7 +7463,6 @@ packages:
     dependencies:
       ms: 2.0.0
       supports-color: 6.1.0
-    dev: true
 
   /debug@3.1.0(supports-color@4.4.0):
     resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
@@ -7887,7 +7869,7 @@ packages:
       js-yaml: 3.14.1
       lodash: 4.17.21
       mdast-util-inject: 1.1.0
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       mime: 1.6.0
       module-deps-sortable: 4.0.6
       parse-filepath: 1.0.2
@@ -8096,7 +8078,7 @@ packages:
     dev: true
 
   /encoding@0.1.13:
-    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==, tarball: https://r2.cnpmjs.org/encoding/-/encoding-0.1.13.tgz}
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
     requiresBuild: true
     dependencies:
       iconv-lite: 0.6.3
@@ -8588,7 +8570,7 @@ packages:
     dependencies:
       array-includes: 3.1.7
       contains-path: 0.1.0
-      debug: 2.6.9(supports-color@3.2.3)
+      debug: 2.6.9(supports-color@6.1.0)
       doctrine: 1.5.0
       eslint: 6.8.0
       eslint-import-resolver-node: 0.3.9
@@ -8829,7 +8811,7 @@ packages:
       babel-code-frame: 6.26.0
       chalk: 1.1.3
       concat-stream: 1.6.2
-      debug: 2.6.9(supports-color@3.2.3)
+      debug: 2.6.9(supports-color@6.1.0)
       doctrine: 2.1.0
       escope: 3.6.0
       espree: 3.5.4
@@ -9170,21 +9152,6 @@ packages:
     dependencies:
       is-posix-bracket: 0.1.1
 
-  /expand-brackets@2.1.4:
-    resolution: {integrity: sha512-w/ozOKR9Obk3qoWeY/WDi6MFta9AoMR+zud60mdnbniMcBxRuFJyDt2LdX/14A1UABeqk+Uk+LDfUpvoGKppZA==, tarball: https://r2.cnpmjs.org/expand-brackets/-/expand-brackets-2.1.4.tgz}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      debug: 2.6.9(supports-color@3.2.3)
-      define-property: 0.2.5
-      extend-shallow: 2.0.1
-      posix-character-classes: 0.1.1
-      regex-not: 1.0.2
-      snapdragon: 0.8.2
-      to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /expand-brackets@2.1.4(supports-color@6.1.0):
     resolution: {integrity: sha512-w/ozOKR9Obk3qoWeY/WDi6MFta9AoMR+zud60mdnbniMcBxRuFJyDt2LdX/14A1UABeqk+Uk+LDfUpvoGKppZA==, tarball: https://r2.cnpmjs.org/expand-brackets/-/expand-brackets-2.1.4.tgz}
     engines: {node: '>=0.10.0'}
@@ -9267,22 +9234,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extglob: 1.0.0
-
-  /extglob@2.0.4:
-    resolution: {integrity: sha512-Nmb6QXkELsuBr24CJSkilo6UHHgbekK5UiZgfE6UHD3Eb27YC6oD+bhcT+tJ6cl8dmsgdQxnWlcry8ksBIBLpw==, tarball: https://r2.cnpmjs.org/extglob/-/extglob-2.0.4.tgz}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      array-unique: 0.3.2
-      define-property: 1.0.0
-      expand-brackets: 2.1.4
-      extend-shallow: 2.0.1
-      fragment-cache: 0.2.1
-      regex-not: 1.0.2
-      snapdragon: 0.8.2
-      to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /extglob@2.0.4(supports-color@6.1.0):
     resolution: {integrity: sha512-Nmb6QXkELsuBr24CJSkilo6UHHgbekK5UiZgfE6UHD3Eb27YC6oD+bhcT+tJ6cl8dmsgdQxnWlcry8ksBIBLpw==, tarball: https://r2.cnpmjs.org/extglob/-/extglob-2.0.4.tgz}
@@ -9422,7 +9373,7 @@ packages:
     dev: true
 
   /file-uri-to-path@1.0.0:
-    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==, tarball: https://r2.cnpmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
@@ -9565,7 +9516,7 @@ packages:
     dependencies:
       detect-file: 1.0.0
       is-glob: 3.1.0
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       resolve-dir: 1.0.1
     transitivePeerDependencies:
       - supports-color
@@ -9858,7 +9809,7 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
   /fsevents@1.2.13:
-    resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==, tarball: https://r2.cnpmjs.org/fsevents/-/fsevents-1.2.13.tgz}
+    resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
     deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
@@ -10558,7 +10509,7 @@ packages:
     dependencies:
       grunt: 0.4.5
       hooker: 0.2.3
-      nodeunit: 0.9.5(supports-color@3.2.3)
+      nodeunit: 0.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10794,7 +10745,6 @@ packages:
   /has-flag@3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==, tarball: https://r2.cnpmjs.org/has-flag/-/has-flag-3.0.0.tgz}
     engines: {node: '>=4'}
-    dev: true
 
   /has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==, tarball: https://r2.cnpmjs.org/has-flag/-/has-flag-4.0.0.tgz}
@@ -12897,7 +12847,7 @@ packages:
     dev: true
 
   /json-schema-traverse@1.0.0:
-    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==, tarball: https://r2.cnpmjs.org/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz}
+    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
     requiresBuild: true
     dev: true
 
@@ -13497,7 +13447,7 @@ packages:
     dev: true
 
   /lodash.isplainobject@4.0.6:
-    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==, tarball: https://r2.cnpmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz}
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     requiresBuild: true
     dev: true
 
@@ -13526,7 +13476,7 @@ packages:
     dev: true
 
   /lodash.mergewith@4.6.2:
-    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==, tarball: https://r2.cnpmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz}
+    resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
     requiresBuild: true
     dev: true
 
@@ -13589,7 +13539,7 @@ packages:
     dev: true
 
   /lodash.uniq@4.5.0:
-    resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==, tarball: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz}
+    resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
     dev: true
 
   /lodash.upperfirst@4.3.1:
@@ -14061,27 +14011,6 @@ packages:
       object.omit: 2.0.1
       parse-glob: 3.0.4
       regex-cache: 0.4.4
-
-  /micromatch@3.1.10:
-    resolution: {integrity: sha512-MWikgl9n9M3w+bpsY3He8L+w9eF9338xRl8IAO5viDizwSzziFEyUzo2xrrloB64ADbTf8uA8vRqqttDTOmccg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      arr-diff: 4.0.0
-      array-unique: 0.3.2
-      braces: 2.3.2
-      define-property: 2.0.2
-      extend-shallow: 3.0.2
-      extglob: 2.0.4
-      fragment-cache: 0.2.1
-      kind-of: 6.0.3
-      nanomatch: 1.2.13
-      object.pick: 1.3.0
-      regex-not: 1.0.2
-      snapdragon: 0.8.2
-      to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /micromatch@3.1.10(supports-color@6.1.0):
     resolution: {integrity: sha512-MWikgl9n9M3w+bpsY3He8L+w9eF9338xRl8IAO5viDizwSzziFEyUzo2xrrloB64ADbTf8uA8vRqqttDTOmccg==}
@@ -14587,25 +14516,6 @@ packages:
     hasBin: true
     dev: true
 
-  /nanomatch@1.2.13:
-    resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      arr-diff: 4.0.0
-      array-unique: 0.3.2
-      define-property: 2.0.2
-      extend-shallow: 3.0.2
-      fragment-cache: 0.2.1
-      is-windows: 1.0.2
-      kind-of: 6.0.3
-      object.pick: 1.3.0
-      regex-not: 1.0.2
-      snapdragon: 0.8.2
-      to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /nanomatch@1.2.13(supports-color@6.1.0):
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
     engines: {node: '>=0.10.0'}
@@ -14741,7 +14651,7 @@ packages:
     dev: true
 
   /node-notifier@6.0.0:
-    resolution: {integrity: sha512-SVfQ/wMw+DesunOm5cKqr6yDcvUTDl/yc97ybGHMrteNEY6oekXpNpS3lZwgLlwz0FLgHoiW28ZpmBHUDg37cw==, tarball: https://r2.cnpmjs.org/node-notifier/-/node-notifier-6.0.0.tgz}
+    resolution: {integrity: sha512-SVfQ/wMw+DesunOm5cKqr6yDcvUTDl/yc97ybGHMrteNEY6oekXpNpS3lZwgLlwz0FLgHoiW28ZpmBHUDg37cw==}
     requiresBuild: true
     dependencies:
       growly: 1.3.0
@@ -14761,6 +14671,16 @@ packages:
 
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
+    dev: true
+
+  /nodeunit@0.9.5:
+    resolution: {integrity: sha512-aL54LEVIG/tXefI1SBH6LQrOWfhdN7EHsseaWzN4yxaQuNiqNeKetqfncf7XlBIIfv2clHJlfnmtKcESB6FKxA==}
+    deprecated: you are strongly encouraged to use other testing options
+    hasBin: true
+    dependencies:
+      tap: 7.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /nodeunit@0.9.5(supports-color@3.2.3):
@@ -16956,7 +16876,7 @@ packages:
     requiresBuild: true
     dependencies:
       graceful-fs: 4.2.11
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       readable-stream: 2.3.8
     transitivePeerDependencies:
       - supports-color
@@ -17400,7 +17320,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   /require-from-string@2.0.2:
-    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==, tarball: https://r2.cnpmjs.org/require-from-string/-/require-from-string-2.0.2.tgz}
+    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
     dev: true
@@ -17783,7 +17703,7 @@ packages:
       exec-sh: 0.3.6
       execa: 1.0.0
       fb-watchman: 2.0.2
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       minimist: 1.2.8
       walker: 1.0.8
     transitivePeerDependencies:
@@ -18111,22 +18031,6 @@ packages:
       kind-of: 3.2.2
     dev: true
 
-  /snapdragon@0.8.2:
-    resolution: {integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      base: 0.11.2
-      debug: 2.6.9(supports-color@3.2.3)
-      define-property: 0.2.5
-      extend-shallow: 2.0.1
-      map-cache: 0.2.2
-      source-map: 0.5.7
-      source-map-resolve: 0.5.3
-      use: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /snapdragon@0.8.2(supports-color@6.1.0):
     resolution: {integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==}
     engines: {node: '>=0.10.0'}
@@ -18262,7 +18166,7 @@ packages:
     dev: true
 
   /source-map@0.2.0:
-    resolution: {integrity: sha512-CBdZ2oa/BHhS4xj5DlhjWNHcan57/5YuvfdLf17iVmIpd9KRm+DFLmC6nBNj+6Ua7Kt3TmOjDpQT1aTYOQtoUA==, tarball: https://r2.cnpmjs.org/source-map/-/source-map-0.2.0.tgz}
+    resolution: {integrity: sha512-CBdZ2oa/BHhS4xj5DlhjWNHcan57/5YuvfdLf17iVmIpd9KRm+DFLmC6nBNj+6Ua7Kt3TmOjDpQT1aTYOQtoUA==}
     engines: {node: '>=0.8.0'}
     requiresBuild: true
     dependencies:
@@ -18945,7 +18849,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       has-flag: 3.0.0
-    dev: true
 
   /supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -19009,6 +18912,24 @@ packages:
       lodash: 4.17.21
       slice-ansi: 2.1.0
       string-width: 3.1.0
+    dev: true
+
+  /tap-mocha-reporter@2.0.1:
+    resolution: {integrity: sha512-FnjipM2mSpWm2Do7G34Do28QWyUZ7/iYRvPo5q+Q0kJTSUFkknwN78XK28jgPxFeICZOdwXAT3nS7gaeaYd3qg==}
+    hasBin: true
+    dependencies:
+      color-support: 1.1.3
+      debug: 2.6.9(supports-color@6.1.0)
+      diff: 1.4.0
+      escape-string-regexp: 1.0.5
+      glob: 7.2.3
+      js-yaml: 3.14.1
+      tap-parser: 2.2.3
+      unicode-length: 1.0.3
+    optionalDependencies:
+      readable-stream: 2.3.8
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /tap-mocha-reporter@2.0.1(supports-color@3.2.3):
@@ -19124,6 +19045,34 @@ packages:
       - tap-parser
       - tap-yaml
       - yaml
+
+  /tap@7.1.2:
+    resolution: {integrity: sha512-RI3Vf8yn0P2C5rgQYg8iI8XeMOrwkayxAMC4nXZcOSUANC4Tig4v9FO6BolSjq1WaLFaGRLPfUEaYdZo6tIJUA==}
+    engines: {node: '>=0.8'}
+    hasBin: true
+    dependencies:
+      bluebird: 3.7.2
+      clean-yaml-object: 0.1.0
+      color-support: 1.1.3
+      coveralls: 2.13.3
+      deeper: 2.1.0
+      foreground-child: 1.5.6
+      glob: 7.2.3
+      isexe: 1.1.2
+      js-yaml: 3.14.1
+      nyc: 7.1.0
+      only-shallow: 1.2.0
+      opener: 1.5.2
+      os-homedir: 1.0.1
+      readable-stream: 2.3.8
+      signal-exit: 3.0.7
+      stack-utils: 0.4.0
+      tap-mocha-reporter: 2.0.1
+      tap-parser: 2.2.3
+      tmatch: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /tap@7.1.2(supports-color@3.2.3):
     resolution: {integrity: sha512-RI3Vf8yn0P2C5rgQYg8iI8XeMOrwkayxAMC4nXZcOSUANC4Tig4v9FO6BolSjq1WaLFaGRLPfUEaYdZo6tIJUA==}
@@ -20415,7 +20364,7 @@ packages:
     dev: true
 
   /watchpack-chokidar2@2.0.1:
-    resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==, tarball: https://r2.cnpmjs.org/watchpack-chokidar2/-/watchpack-chokidar2-2.0.1.tgz}
+    resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==}
     requiresBuild: true
     dependencies:
       chokidar: 2.1.8
@@ -20541,7 +20490,7 @@ packages:
       loader-runner: 2.4.0
       loader-utils: 1.4.2
       memory-fs: 0.4.1
-      micromatch: 3.1.10
+      micromatch: 3.1.10(supports-color@6.1.0)
       mkdirp: 0.5.6
       neo-async: 2.6.2
       node-libs-browser: 2.2.1

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/jimwong666/FFEcoverage/compare/@jimwong/istanbul-reports@3.1.11...@jimwong/istanbul-reports@3.2.0) (2024-03-06)
+
+
+### Bug Fixes
+
+* **ili,ir:** fix cycle dependency ([3f89524](https://github.com/jimwong666/FFEcoverage/commit/3f895244514825edb6bd21efc6eda1a04d2546b8))
+
+
+### Features
+
+* **istanbul-report:** change dependencies ([c1d497a](https://github.com/jimwong666/FFEcoverage/commit/c1d497a3e31f9046645678bc6eac0ae14a872737))
+
+
+
+
+
+
 ## [3.1.6](https://github.com/istanbuljs/istanbuljs/compare/istanbul-reports-v3.1.5...istanbul-reports-v3.1.6) (2023-07-25)
 
 

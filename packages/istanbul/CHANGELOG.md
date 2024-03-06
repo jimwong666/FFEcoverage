@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.4.7](https://github.com/jimwong666/FFEcoverage/compare/@jimwong/istanbul@0.4.6...@jimwong/istanbul@0.4.7) (2024-03-06)
+
+**Note:** Version bump only for package @jimwong/istanbul
+
+
+
+
+
 Changelog
 ---------
 
@@ -359,4 +372,3 @@ code not required by tests to appear in the coverage report.
 <tr><td>v0.1.0</td><td>Initial version</td></tr>
 </td></tr>
 </table>
-

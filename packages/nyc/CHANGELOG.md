@@ -1,3 +1,23 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [15.7.0](https://github.com/jimwong666/FFEcoverage/compare/@jimwong/nyc@15.5.1...@jimwong/nyc@15.7.0) (2024-03-06)
+
+
+### Features
+
+* **nyc:** change dependencies（istanbul-lib-instrument v4 --> v1) ([2d0e641](https://github.com/jimwong666/FFEcoverage/commit/2d0e64175edfdfe00617035c27cf6ffbeee0a6f1))
+
+
+
+# 15.6.0 (2024-03-04)
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

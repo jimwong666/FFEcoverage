@@ -1,6 +1,6 @@
 {
   "name": "@jimwong/git-revision-webpack-plugin",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "author": "jim wong",
   "license": "MIT",
   "main": "dist/index.js",

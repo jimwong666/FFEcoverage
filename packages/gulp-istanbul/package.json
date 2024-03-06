@@ -1,6 +1,6 @@
 {
   "name": "@jimwong/gulp-istanbul",
-  "version": "1.1.29",
+  "version": "1.1.30",
   "description": "Istanbul unit test coverage plugin for gulp.",
   "keywords": [
     "gulpplugin",
@@ -30,9 +30,9 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
-    "@jimwong/auto-report-coverage": "^0.0.22",
-    "@jimwong/git-revision-webpack-plugin": "^5.0.2",
-    "@jimwong/istanbul": "^0.4.5",
+    "@jimwong/auto-report-coverage": "^0.0.23",
+    "@jimwong/git-revision-webpack-plugin": "^5.0.3",
+    "@jimwong/istanbul": "^0.4.7",
     "istanbul-threshold-checker": "^0.2.1",
     "lodash": "^4.0.0",
     "plugin-error": "^1.0.0",

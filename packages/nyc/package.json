@@ -1,6 +1,6 @@
 {
   "name": "@jimwong/nyc",
-  "version": "15.6.0",
+  "version": "15.7.0",
   "description": "the Istanbul command line interface",
   "author": "jim wong",
   "main": "index.js",
@@ -43,7 +43,8 @@
   "dependencies": {
     "@istanbuljs/load-nyc-config": "^1.0.0",
     "@istanbuljs/schema": "^0.1.2",
-    "@jimwong/istanbul-reports": "^3.1.11",
+    "@jimwong/istanbul-lib-instrument": "^1.11.0",
+    "@jimwong/istanbul-reports": "^3.2.0",
     "caching-transform": "^4.0.0",
     "convert-source-map": "^1.7.0",
     "decamelize": "^1.2.0",
@@ -54,7 +55,6 @@
     "glob": "^7.1.6",
     "istanbul-lib-coverage": "^3.0.0",
     "istanbul-lib-hook": "^3.0.0",
-    "@jimwong/istanbul-lib-instrument": "^1.10.13",
     "istanbul-lib-processinfo": "^2.0.2",
     "istanbul-lib-report": "^3.0.0",
     "istanbul-lib-source-maps": "^4.0.0",

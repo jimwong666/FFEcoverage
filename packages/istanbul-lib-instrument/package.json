@@ -1,6 +1,6 @@
 {
 	"name": "@jimwong/istanbul-lib-instrument",
-	"version": "1.10.13",
+	"version": "1.11.0",
 	"author": "jim wong",
 	"main": "dist/index.js",
 	"files": [
@@ -16,7 +16,7 @@
 		"prepublish": "npm run release"
 	},
 	"dependencies": {
-		"@jimwong/git-revision-webpack-plugin": "^5.0.0",
+		"@jimwong/git-revision-webpack-plugin": "^5.0.3",
 		"babel-generator": "^6.18.0",
 		"babel-template": "^6.16.0",
 		"babel-traverse": "^6.18.0",
