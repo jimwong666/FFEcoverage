@@ -78,7 +78,7 @@ importers:
         specifier: ^5.0.3
         version: link:../git-revision-webpack-plugin
       '@jimwong/istanbul-lib-instrument':
-        specifier: ^1.11.2
+        specifier: ^1.11.3
         version: link:../istanbul-lib-instrument
       babel-plugin-syntax-object-rest-spread:
         specifier: ^6.13.0
@@ -91,7 +91,7 @@ importers:
         version: 4.2.3
     devDependencies:
       '@jimwong/nyc':
-        specifier: ^15.7.2
+        specifier: ^15.7.3
         version: link:../nyc
       babel-cli:
         specifier: ^6.18.0
@@ -444,7 +444,7 @@ importers:
         specifier: ^0.1.2
         version: 0.1.3
       '@jimwong/istanbul-lib-instrument':
-        specifier: ^1.11.2
+        specifier: ^1.11.3
         version: link:../istanbul-lib-instrument
       '@jimwong/istanbul-reports':
         specifier: ^3.2.1
