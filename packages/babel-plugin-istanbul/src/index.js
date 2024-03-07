@@ -164,6 +164,8 @@ function initParams(_this) {
 				.replace(/\$\{project_name\}/g, params.project_name) || "";
 
 		params.maxWaitingTimes = _this.opts.maxWaitingTimes || 6;
+		params.reportOriginalCoverageFlag =
+			_this.opts.reportOriginalCoverageFlag || false;
 		params.reportURL =
 			_this.opts.reportURL ||
 			"https://www.please.config.your.reporturl.com";
@@ -190,6 +192,11 @@ var _coverage = {};
 var waitingTimes = 0;
 
 var timer = setInterval(function() {
+	if (!params.reportOriginalCoverageFlag) {
+		// 不上报原始覆盖率源数据
+		clearInterval(timer);
+		return;
+	}
 	if (Object.keys(coverage).length > 0 || Object.keys(_coverage).length > 0) {
 		_coverage = Object.assign({}, _coverage, coverage);
 		coverage = {};
@@ -284,10 +291,13 @@ function makeVisitor({ types: t }) {
 					const result = this.__dv__.exit(path);
 					const filePath = getPath(this);
 
-					// 更新覆盖率源数据
-					coverage = Object.assign({}, coverage, {
-						[result.fileCoverage.path]: result.fileCoverage,
-					});
+					if (params.reportOriginalCoverageFlag) {
+						// 上报原始覆盖率源数据
+						// 更新覆盖率源数据
+						coverage = Object.assign({}, coverage, {
+							[result.fileCoverage.path]: result.fileCoverage,
+						});
+					}
 
 					if (this.opts.onCover) {
 						this.opts.onCover(filePath, result.fileCoverage);
