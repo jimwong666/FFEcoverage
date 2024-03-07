@@ -686,12 +686,12 @@ function programVisitor(
 				var project_name = "";
 
 				if (opts.params) {
-					commit_hash = opts.commit_hash;
-					version = opts.version;
-					branch = opts.branch;
-					last_commit_datetime = opts.last_commit_datetime;
-					remote = opts.remote;
-					project_name = opts.project_name;
+					commit_hash = opts.params.commit_hash;
+					version = opts.params.version;
+					branch = opts.params.branch;
+					last_commit_datetime = opts.params.last_commit_datetime;
+					remote = opts.params.remote;
+					project_name = opts.params.project_name;
 				} else {
 					try {
 						commit_hash = gitRevisionPlugin.commithash();
