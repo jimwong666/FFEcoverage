@@ -29,6 +29,9 @@ exports.init = function(grunt) {
 	var branch = gitRevisionPlugin.branch() || "";
 	var last_commit_datetime = gitRevisionPlugin.lastcommitdatetime() || "";
 	var remote = gitRevisionPlugin.remote() || "";
+	if (remote.endsWith("/")) {
+		remote = remote.slice(0, -1);
+	}
 	var remoteArr = (remote || "").split("/");
 	var project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 

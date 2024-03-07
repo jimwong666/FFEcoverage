@@ -17,8 +17,8 @@ const arcCode = fs.readFileSync(
   require.resolve("@jimwong/auto-report-coverage/dist/index.umd.js"),
   "utf8"
 );
-var GitRevisionPlugin =
-  require("@jimwong/git-revision-webpack-plugin").GitRevisionPlugin;
+var GitRevisionPlugin = require("@jimwong/git-revision-webpack-plugin")
+  .GitRevisionPlugin;
 const gitRevisionPlugin = new GitRevisionPlugin();
 
 var PLUGIN_NAME = "gulp-istanbul";
@@ -28,15 +28,15 @@ function normalizePathSep(filepath) {
   return filepath.replace(/\//g, path.sep);
 }
 
-var plugin = (module.exports = function (opts) {
+var plugin = (module.exports = function(opts) {
   opts = opts || {};
   _.defaults(opts, {
     coverageVariable: COVERAGE_VARIABLE,
-    instrumenter: istanbul.Instrumenter,
+    instrumenter: istanbul.Instrumenter
   });
   opts.includeUntested = opts.includeUntested === true;
 
-  return through(function (file, enc, cb) {
+  return through(function(file, enc, cb) {
     var fileContents = file.contents.toString();
     var fileOpts = _.cloneDeep(opts);
 
@@ -47,8 +47,8 @@ var plugin = (module.exports = function (opts) {
           sourceMapWithCode: true,
           sourceContent: fileContents,
           sourceMapRoot: file.sourceMap.sourceRoot,
-          file: normalizePathSep(file.path),
-        },
+          file: normalizePathSep(file.path)
+        }
       });
     }
     var instrumenter = new opts.instrumenter(fileOpts);
@@ -67,6 +67,9 @@ var plugin = (module.exports = function (opts) {
     var branch = gitRevisionPlugin.branch() || "";
     var last_commit_datetime = gitRevisionPlugin.lastcommitdatetime() || "";
     var remote = gitRevisionPlugin.remote() || "";
+    if (remote.endsWith("/")) {
+      remote = remote.slice(0, -1);
+    }
     var remoteArr = (remote || "").split("/");
     var project_name = remoteArr[remoteArr.length - 1].split(".")[0];
 
@@ -96,7 +99,7 @@ var plugin = (module.exports = function (opts) {
       branch: branch,
       last_commit_datetime: last_commit_datetime,
       remote: remote,
-      project_name: project_name,
+      project_name: project_name
     };
 
     instrumenter.instrument(
@@ -116,7 +119,7 @@ var plugin = (module.exports = function (opts) {
             interval: ${opts.autoReportInterval},
           });
         }`,
-      function (err, code) {
+      function(err, code) {
         if (err) {
           return cb(
             new PluginError(
@@ -139,8 +142,7 @@ var plugin = (module.exports = function (opts) {
         // https://github.com/gotwarlost/istanbul/issues/112
         if (opts.includeUntested) {
           var instrumentedSrc = file.contents.toString();
-          var covStubRE =
-            /\{.*"path".*"fnMap".*"statementMap".*"branchMap".*\}/g;
+          var covStubRE = /\{.*"path".*"fnMap".*"statementMap".*"branchMap".*\}/g;
           var covStubMatch = covStubRE.exec(instrumentedSrc);
           if (covStubMatch !== null) {
             var covStub = JSON.parse(covStubMatch[0]);
@@ -155,21 +157,21 @@ var plugin = (module.exports = function (opts) {
   });
 });
 
-plugin.hookRequire = function (options) {
+plugin.hookRequire = function(options) {
   var fileMap = {};
 
   istanbul.hook.unhookRequire();
   istanbul.hook.hookRequire(
-    function (path) {
+    function(path) {
       return !!fileMap[normalizePathSep(path)];
     },
-    function (code, path) {
+    function(code, path) {
       return fileMap[normalizePathSep(path)];
     },
     options
   );
 
-  return through(function (file, enc, cb) {
+  return through(function(file, enc, cb) {
     // If the file is already required, delete it from the cache otherwise the covered
     // version will be ignored.
     delete require.cache[path.resolve(file.path)];
@@ -178,7 +180,7 @@ plugin.hookRequire = function (options) {
   });
 };
 
-plugin.summarizeCoverage = function (opts) {
+plugin.summarizeCoverage = function(opts) {
   opts = opts || {};
   if (!opts.coverageVariable) opts.coverageVariable = COVERAGE_VARIABLE;
 
@@ -192,7 +194,7 @@ plugin.summarizeCoverage = function (opts) {
   return istanbul.utils.summarizeCoverage(collector.getFinalCoverage());
 };
 
-plugin.writeReports = function (opts) {
+plugin.writeReports = function(opts) {
   if (typeof opts === "string") opts = { dir: opts };
   opts = opts || {};
 
@@ -201,12 +203,12 @@ plugin.writeReports = function (opts) {
     coverageVariable: COVERAGE_VARIABLE,
     dir: defaultDir,
     reportOpts: {
-      dir: opts.dir || defaultDir,
-    },
+      dir: opts.dir || defaultDir
+    }
   });
   opts.reporters = opts.reporters || ["lcov", "json", "text", "text-summary"];
 
-  var reporters = opts.reporters.map(function (reporter) {
+  var reporters = opts.reporters.map(function(reporter) {
     if (reporter.TYPE) Report.register(reporter);
     return reporter.TYPE || reporter;
   });
@@ -220,7 +222,7 @@ plugin.writeReports = function (opts) {
     );
   }
 
-  reporters = reporters.map(function (r) {
+  reporters = reporters.map(function(r) {
     var reportOpts = opts.reportOpts[r] || opts.reportOpts;
     return Report.create(r, _.clone(reportOpts));
   });
@@ -228,13 +230,13 @@ plugin.writeReports = function (opts) {
   var cover = through();
 
   cover
-    .on("end", function () {
+    .on("end", function() {
       var collector = new Collector();
 
       // Revert to an object if there are no matching source files.
       collector.add(global[opts.coverageVariable] || {});
 
-      reporters.forEach(function (report) {
+      reporters.forEach(function(report) {
         report.writeReport(collector, true);
       });
     })
@@ -243,16 +245,16 @@ plugin.writeReports = function (opts) {
   return cover;
 };
 
-plugin.enforceThresholds = function (opts) {
+plugin.enforceThresholds = function(opts) {
   opts = opts || {};
   opts = _.defaults(opts, {
-    coverageVariable: COVERAGE_VARIABLE,
+    coverageVariable: COVERAGE_VARIABLE
   });
 
   var cover = through();
 
   cover
-    .on("end", function () {
+    .on("end", function() {
       var collector = new Collector();
 
       // Revert to an object if there are no macthing source files.
@@ -262,7 +264,7 @@ plugin.enforceThresholds = function (opts) {
         opts.thresholds,
         collector.getFinalCoverage()
       );
-      var criteria = function (type) {
+      var criteria = function(type) {
         return (
           (type.global && type.global.failed) || (type.each && type.each.failed)
         );
@@ -273,7 +275,7 @@ plugin.enforceThresholds = function (opts) {
           "error",
           new PluginError({
             plugin: PLUGIN_NAME,
-            message: "Coverage failed",
+            message: "Coverage failed"
           })
         );
       }
