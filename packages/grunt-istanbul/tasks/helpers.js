@@ -1,4 +1,4 @@
-exports.init = function (grunt) {
+exports.init = function(grunt) {
 	"use strict";
 	var COVERAGEBARIABLE = "__coverage__";
 	var chalk = require("chalk");
@@ -9,7 +9,7 @@ exports.init = function (grunt) {
 	var flow = require("nue").flow;
 	var as = require("nue").as;
 
-	var istanbul = require("istanbul");
+	var istanbul = require("@jimwong/istanbul");
 
 	function flowEnd(err, done) {
 		if (err) {
@@ -21,8 +21,8 @@ exports.init = function (grunt) {
 		require.resolve("@jimwong/auto-report-coverage/dist/index.umd.js"),
 		"utf8",
 	);
-	var GitRevisionPlugin =
-		require("@jimwong/git-revision-webpack-plugin").GitRevisionPlugin;
+	var GitRevisionPlugin = require("@jimwong/git-revision-webpack-plugin")
+		.GitRevisionPlugin;
 	var gitRevisionPlugin = new GitRevisionPlugin();
 	var commit_hash = gitRevisionPlugin.commithash() || "";
 	var version = gitRevisionPlugin.version() || "";
@@ -38,13 +38,13 @@ exports.init = function (grunt) {
 			options.reporters && typeof options.reporters === "object"
 				? options.reporters
 				: {};
-		Object.keys(reporters).forEach(function (n) {
+		Object.keys(reporters).forEach(function(n) {
 			if (reporters[n]) {
 				result.push({ type: n, options: reporters[n] });
 			}
 		});
 
-		var append = function (t) {
+		var append = function(t) {
 			if (t && !reporters[t]) {
 				result.push({ type: t, options: options });
 				reporters[t] = true;
@@ -72,15 +72,15 @@ exports.init = function (grunt) {
 	}
 
 	return {
-		instrument: function (files, options, done) {
-			var outFile = function (file) {
+		instrument: function(files, options, done) {
+			var outFile = function(file) {
 				return path.join(
 					options.basePath,
 					options.flatten === true ? path.basename(file) : file,
 				);
 			};
 
-			var getRelativePath = function (file) {
+			var getRelativePath = function(file) {
 				var cwd = options.cwd || "";
 
 				return path.join(cwd, file);
@@ -209,8 +209,8 @@ exports.init = function (grunt) {
 			);
 
 			flow(
-				function (filelist) {
-					this.asyncEach(filelist, function (file, group) {
+				function(filelist) {
+					this.asyncEach(filelist, function(file, group) {
 						this.exec(
 							options.lazy ? dateCheckFlow : instFlow,
 							{ name: file },
@@ -246,39 +246,39 @@ exports.init = function (grunt) {
 				done,
 			)(files);
 		},
-		addUncoveredFiles: function (coverage, options, allFiles) {
+		addUncoveredFiles: function(coverage, options, allFiles) {
 			var instrumenter = new istanbul.Instrumenter({
 				coverageVariable: options.coverageVariable || COVERAGEBARIABLE,
 				preserveComments: false,
 			});
 			var transformer = instrumenter.instrumentSync.bind(instrumenter);
-			allFiles.forEach(function (file) {
+			allFiles.forEach(function(file) {
 				if (!coverage[file]) {
 					transformer(fs.readFileSync(file, "utf-8"), file);
 					coverage[file] = instrumenter.coverState;
 				}
 			});
 		},
-		storeCoverage: function (coverage, options, done) {
+		storeCoverage: function(coverage, options, done) {
 			flow(
 				function write_json(cov) {
 					var json = path.resolve(options.dir, options.json);
 					grunt.file.write(json, JSON.stringify(cov));
 					this.next();
 				},
-				function () {
+				function() {
 					flowEnd(this.err, done);
 				},
 			)(coverage);
 		},
-		makeReport: function (files, options, done) {
+		makeReport: function(files, options, done) {
 			flow(
-				function (filelist) {
+				function(filelist) {
 					var collector = new istanbul.Collector();
-					filelist.forEach(function (file) {
+					filelist.forEach(function(file) {
 						collector.add(grunt.file.readJSON(file));
 					});
-					makeReporters(options).forEach(function (repoDef) {
+					makeReporters(options).forEach(function(repoDef) {
 						var reporter = istanbul.Report.create(
 							repoDef.type,
 							repoDef.options,
@@ -287,7 +287,7 @@ exports.init = function (grunt) {
 					});
 					this.next();
 				},
-				function () {
+				function() {
 					flowEnd(this.err, done);
 				},
 			)(files);
