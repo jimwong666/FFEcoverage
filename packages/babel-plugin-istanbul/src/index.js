@@ -280,6 +280,7 @@ function makeVisitor({ types: t }) {
 						needInjectGitInfoJsPathArr,
 						incrementCoverageDir,
 						relativePathPrefix: params.relativePathPrefix,
+						params: params,
 					});
 					this.__dv__.enter(path);
 				},

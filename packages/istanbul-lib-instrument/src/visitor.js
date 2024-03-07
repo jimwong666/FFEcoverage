@@ -51,7 +51,7 @@ class VisitState {
 	hintFor(node) {
 		let hint = null;
 		if (node.leadingComments) {
-			node.leadingComments.forEach(function (c) {
+			node.leadingComments.forEach(function(c) {
 				const v = (
 					c.value || /* istanbul ignore next: paranoid check */ ""
 				).trim();
@@ -71,7 +71,7 @@ class VisitState {
 			if (!comments) {
 				return;
 			}
-			comments.forEach(function (c) {
+			comments.forEach(function(c) {
 				const v = (
 					c.value || /* istanbul ignore next: paranoid check */ ""
 				).trim();
@@ -322,17 +322,17 @@ class VisitState {
 function entries() {
 	const enter = Array.prototype.slice.call(arguments);
 	// the enter function
-	const wrappedEntry = function (path, node) {
+	const wrappedEntry = function(path, node) {
 		this.onEnter(path);
 		if (this.shouldIgnore(path)) {
 			return;
 		}
 		const that = this;
-		enter.forEach(function (e) {
+		enter.forEach(function(e) {
 			e.call(that, path, node);
 		});
 	};
-	const exit = function (path, node) {
+	const exit = function(path, node) {
 		this.onExit(path, node);
 	};
 	return {
@@ -378,7 +378,7 @@ function makeBlock(path) {
 }
 
 function blockProp(prop) {
-	return function (path) {
+	return function(path) {
 		makeBlock.call(this, path.get(prop));
 	};
 }
@@ -391,7 +391,7 @@ function makeParenthesizedExpression(path) {
 }
 
 function parenthesizedExpressionProp(prop) {
-	return function (path) {
+	return function(path) {
 		makeParenthesizedExpression.call(this, path.get(prop));
 	};
 }
@@ -591,6 +591,7 @@ const defaultProgramVisitorOpts = {
 	needInjectGitInfoJsPathArr: [""],
 	incrementCoverageDir: "",
 	relativePathPrefix: "",
+	params: null,
 };
 /**
  * programVisitor is a `babel` adaptor for instrumentation.
@@ -616,6 +617,7 @@ const defaultProgramVisitorOpts = {
  * 此配置配合多页面应用，包括①配置了HtmlWebpackPlugin的webpack多页应用，和②传统前后端未分离的多页应用（②这部分待定，还不一定能用到这个插件...o_O）
  * @param {string} [opts.incrementCoverageDir=''] 表示生成增量代码覆盖率时，增量增量代码的生效路径，比如 `src`，表示只有 `src` 下的文件变化才会被计算增量覆盖率，如果不设置，则表示所有文件都会被计算增量覆盖率
  * @param {string} [opts.relativePathPrefix=''] 表示再相对路径的模式下，生成的代码覆盖率文件中，文件覆盖率对象的`key`的前缀（即相对路径的前缀，以满足自定义路径的需求），比如 `src`，表示生成的代码覆盖率文件中，文件路径的前缀是 `src/xx/xx`
+ * @param {string} [opts.params?]
  * original code.
  */
 function programVisitor(
@@ -683,19 +685,31 @@ function programVisitor(
 				var remote = "";
 				var project_name = "";
 
-				try {
-					commit_hash = gitRevisionPlugin.commithash();
-					version = gitRevisionPlugin.version();
-					branch = gitRevisionPlugin.branch();
-					last_commit_datetime =
-						gitRevisionPlugin.lastcommitdatetime();
-					remote = gitRevisionPlugin.remote();
-					// 根据 remote 获取 git repo 名
-					const remoteArr = (remote || "").split("/");
-					project_name =
-						remoteArr[remoteArr.length - 1].split(".")[0];
-				} catch (err) {
-					console.log("get git info error", err);
+				if (opts.params) {
+					commit_hash = opts.commit_hash;
+					version = opts.version;
+					branch = opts.branch;
+					last_commit_datetime = opts.last_commit_datetime;
+					remote = opts.remote;
+					project_name = opts.project_name;
+				} else {
+					try {
+						commit_hash = gitRevisionPlugin.commithash();
+						version = gitRevisionPlugin.version();
+						branch = gitRevisionPlugin.branch();
+						last_commit_datetime = gitRevisionPlugin.lastcommitdatetime();
+						remote = gitRevisionPlugin.remote();
+						if (remote.endsWith("/")) {
+							remote = remote.slice(0, -1);
+						}
+						// 根据 remote 获取 git repo 名
+						const remoteArr = (remote || "").split("/");
+						project_name = remoteArr[remoteArr.length - 1].split(
+							".",
+						)[0];
+					} catch (err) {
+						console.log("get git info error", err);
+					}
 				}
 
 				var cv_git = coverageTemplate_gitinfo({
